@@ -64,5 +64,13 @@ public class Gear extends Command implements IGear{
 		this.duration = duration;
 	}
 	
+	/**
+	 * returns String with Configuration Infos
+	 */
+	public String getConfig() {
+		String config = "Name:  " + this.getName() +" "+  speed + " cm/sec " + duration + " sec";
+		return config;
+	}
+	
 
 }

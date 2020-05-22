@@ -21,7 +21,7 @@ public class Pause extends Command implements IPause {
 	}
 	
 	/**
-	 * 
+	 * sets value for duration
 	 * @param duration sets value for duration attribut
 	 */
 	public void setDuration(int duration) {
@@ -37,5 +37,14 @@ public class Pause extends Command implements IPause {
 		return this.duration;
 	}
 	
+	/**
+	 * returns String with Configuration Infos
+	 */
+	public String getConfig() {
+		String config = "Name:  " + this.getName() +" "+ duration + " sec";
+		return config;
+	}
+	
+
 
 }

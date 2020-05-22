@@ -26,6 +26,7 @@ public abstract class Command implements ICommand{
 	public String getName() {
 		return this.name;
 	}
+	public abstract String getConfig();
 }
 
 

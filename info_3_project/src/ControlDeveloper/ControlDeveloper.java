@@ -18,29 +18,48 @@ public class ControlDeveloper {
 	//Konstruktor
 	public ControlDeveloper() {}
 	
-	void createCommands(int com) {
-		if (com ==1) {
-			Direction d = new Direction("--");
-			d.setDegree(50);
-			commands[counter++] = d;
-		}
-		else if(com ==2) {
-			Gear g  = new Gear("--");
-			g.setSpeed(60);
-			g.setDuration(50);
-			commands[counter++] = g;
-		}
-		else if( com == 3) {
-			Pause p = new Pause("--");
-			p.setDuration(30);
-			commands[counter++] = p;
-		}
+	/**
+	 * Method to test other Methods without creating new command objects every time
+	 */
+	void createCommands() {
+		//1
+		Direction d1 = new Direction("--");
+		d1.setDegree(50);
+		commands[counter++] = d1;
+		
+		//2
+		Gear g1 = new Gear("--");
+		g1.setDuration(15);
+		g1.setSpeed(70);
+		commands[counter++] = g1;
+		
+		//3
+		Pause p1 = new  Pause("--");
+		p1.setDuration(10);
+		commands[counter++] = p1;
+		
+		//4
+		Direction d2 = new Direction("--");
+		d2.setDegree(50);
+		commands[counter++] = d2;
+		
+		//5
+		Gear g2 = new Gear("--");
+		g2.setDuration(15);
+		g2.setSpeed(70);
+		commands[counter++] = g2;
+		
+		
+		
+		
 		
 	}
+		
+	
 	
 	public void printCommands() {
 		for(int i =0; i < counter; i++) {
-			System.out.println(commands[i]);
+			System.out.println(commands[i].getConfig());
 		}
 		
 	}

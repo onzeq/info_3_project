@@ -1,5 +1,5 @@
 package model;
-import hsrt.mec.controldeveloper.core.com.command.IDirection;
+import hsrt.mec.controldeveloper.core.com.command.*;
 /**
  * defines the class for a direction command, i.e. the degree, in which the mobile device shall be turned.
  * @author jakob
@@ -42,4 +42,11 @@ public class Direction extends Command implements IDirection {
 		}
 	}
 
+	/**
+	 * returns String with Configuration Infos
+	 */
+	public String getConfig() {
+		String config = "Name:  " + this.getName() +" "+  degree + " degree";
+		return config;
+	}
 }
