@@ -1,16 +1,16 @@
 package model;
-
+import hsrt.mec.controldeveloper.core.com.command.IGear;
 /**
  * 
  * @author jakob
  * @version 1.0.
  */
-public class Gear extends Command {
+public class Gear extends Command implements IGear{
 	private int speed;
 	private int duration;
 	
 	/**
-	 * 
+	 * Constructor for gear sets name in superclass
 	 * @param name Instanzvariable bekommt String uebergeben
 	 */
 	public Gear(String name) {
@@ -18,7 +18,23 @@ public class Gear extends Command {
 	}
 	
 	/**
-	 * 
+	 * Method which returns duration for certain gear command
+	 * @return returns given duration
+	 */
+	public int getDuration() {
+		return this.duration;
+	}
+	
+	/**
+	 * Returns the speed of the given gear command, with which speed the mobile device shall be moved
+	 * @return returns given speed
+	 */
+	public int getSpeed() {
+		return this.speed;
+	}
+	
+	/**
+	 * sets value for speed in gear command
 	 * @param speed setzt Wert fuer Geschwindigkeit, wenn auﬂerhalb der Grenzen, dann wird Grenzwert uebergeben
 	 */
 	public void setSpeed(int speed) {
@@ -37,9 +53,10 @@ public class Gear extends Command {
 		
 	}
 	/**
-	 * 
+	 * sets duration for gear command
 	 * @param duration setzt die Dauer des Befehls
 	 */
+	
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}

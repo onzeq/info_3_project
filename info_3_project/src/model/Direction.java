@@ -1,11 +1,11 @@
 package model;
-
+import hsrt.mec.controldeveloper.core.com.command.IDirection;
 /**
  * 
  * @author jakob
  * @version 1.0.
  */
-public class Direction extends Command {
+public class Direction extends Command implements IDirection {
 
 	private int degree; //Wertebereich [-90;90]
 	

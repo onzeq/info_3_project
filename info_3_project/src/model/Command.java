@@ -1,4 +1,5 @@
 package model;
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 /**
  * 
@@ -6,7 +7,7 @@ package model;
  * @version 1.0.
  * @
  */
-public abstract class Command {
+public abstract class Command implements ICommand{
 	
 	private String name;
 	
@@ -19,6 +20,14 @@ public abstract class Command {
 	public Command(String name){
 		this.name = name;
 	};
+
+	/**
+	 * returns private attribute "name"(concrete Command)
+	 * @return name of given command
+	 */
+	public String getName() {
+		return this.name;
+	}
 }
 
 
