@@ -1,10 +1,13 @@
 package model;
 import hsrt.mec.controldeveloper.core.com.command.IGear;
+
+
 /**
- * 
+ * defines the class for a gear command, i.e. the speed and the duraration of the mobile device.
  * @author jakob
  * @version 1.0.
  */
+@SuppressWarnings("serial")
 public class Gear extends Command implements IGear{
 	private int speed;
 	private int duration;

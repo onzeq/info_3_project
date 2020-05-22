@@ -2,17 +2,15 @@ package model;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 /**
- * 
+ * defines the method for naming commands
  * @author jakob
  * @version 1.0.
  * @
  */
+@SuppressWarnings("serial")
 public abstract class Command implements ICommand{
 	
 	private String name;
-	
-	
-	//In Aufgabe Rueckgabewert int, ist aber Konstruktor?!
 	/**
 	 * 
 	 * @param name Name wird der Instanzvariable uebergeben

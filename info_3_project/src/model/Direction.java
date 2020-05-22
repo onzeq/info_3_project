@@ -1,12 +1,13 @@
 package model;
 import hsrt.mec.controldeveloper.core.com.command.IDirection;
 /**
- * 
+ * defines the class for a direction command, i.e. the degree, in which the mobile device shall be turned.
  * @author jakob
  * @version 1.0.
  */
+@SuppressWarnings("serial")
 public class Direction extends Command implements IDirection {
-
+	
 	private int degree; //Wertebereich [-90;90]
 	
 	/**
@@ -15,10 +16,10 @@ public class Direction extends Command implements IDirection {
 	 */
 	public Direction(String name) {
 		super(name);
-		
 	}
+	
 	/**
-	 * 
+	 * returns value of steer degree
 	 * @return liefert den Wert des Lenkwinkels zurück
 	 */
 	public int getDegree() {
@@ -26,7 +27,7 @@ public class Direction extends Command implements IDirection {
 	}
 	
 	/**
-	 * 
+	 * sets value for steer degree in a cetain range
 	 * @param value Wert wird der Instanzvariablen uebergeben, wenn Wert außerhalb der Grenzen, wird Grenzwert uebergeben
 	 */
 	public void setDegree(int value) {

@@ -1,5 +1,13 @@
 package model;
+
 import hsrt.mec.controldeveloper.core.com.command.IPause;
+
+
+/**
+ *  defines the class for a pause command, i.e. the duraration, how long the mobile device shall be paused.
+ * @author jakob
+ *
+ */
 @SuppressWarnings("serial")
 public class Pause extends Command implements IPause {
 	private int duration; //time in seconds
