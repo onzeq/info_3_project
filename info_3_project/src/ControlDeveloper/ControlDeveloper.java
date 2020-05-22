@@ -72,9 +72,20 @@ public class ControlDeveloper {
 		System.out.println(c1.ControlDeveloper_Member); //Zugriff ueber Objekt(Instanz)
 		System.out.println(ControlDeveloper.ControlDeveloper_Class); //Zugriff ueber Klasse selbst
 		
+		c1.createCommands();
+		c1.printCommands();
 		
-				
-
+		
+		System.out.println("Ausgabe Liste");
+		CommandList cl1 = new CommandList();
+		cl1.add(c1.commands[0]);
+		cl1.add(c1.commands[1]);
+		cl1.add(c1.commands[2]);
+		cl1.printList();
+		cl1.clear();
+		System.out.println("Inhalt gelöscht");
+		cl1.printList();
 	}
+	
 
 }
