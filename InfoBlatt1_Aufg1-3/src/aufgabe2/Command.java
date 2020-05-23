@@ -1,7 +1,7 @@
 package aufgabe2;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 /**
- * defines the class for a command
+ * defines the class for a command test123
  * @author christian
  * @version 1.0.
  */
