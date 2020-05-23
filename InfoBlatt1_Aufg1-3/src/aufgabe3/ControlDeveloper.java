@@ -7,7 +7,7 @@ package aufgabe3;
 
 public class ControlDeveloper {
 	
-	public final int ANZAHL = 5; //constant value for lenght of object array
+	public final int ANZAHL = 5; //constant value for lenght of object arraya asfdasdf
 	public aufgabe2.Command[] commands = new aufgabe2.Command[ANZAHL]; //new Array of commands
 	
 	public void createCommands() //function for filling the array
