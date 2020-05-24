@@ -13,6 +13,7 @@ public class Element {
 	 */
 	public Element(Command com) {
 		this.element = com;
+		this.next = null;
 	}
 	
 	/**

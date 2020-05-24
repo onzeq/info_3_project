@@ -53,18 +53,30 @@ public class CommandList {
 	}
 	
 	
-	//TODO
 	/**
 	 * returns command instance in certain position pos, 
 	 * if at least pos - elements in the list, else null
 	 * @param pos
 	 * @return
 	 */
-	public Command getPosition(int pos) {
-		return null;
+	public Command getCommand(int pos) {
+		if(pos <= this.getSize()) //Laufzeit jedesmal Funtkionsaufruf?
+		{
+			Element temp = root;
+			for(int i = 0; i< pos; i++)
+			{
+				temp = temp.getNext();
+			}
+			return temp.getElement();
+		}
+		else
+		{
+			return null;
+		}
+				
 	}
 	
-	//TODO
+
 	/**
 	 * returns element instance in Position pos, 
 	 * if enough elements in the list, else null
@@ -72,7 +84,19 @@ public class CommandList {
 	 * @return
 	 */
 	private Element getElement(int pos) {
-		return null;
+		if(pos <= this.getSize()) //Laufzeit jedesmal Funtkionsaufruf?
+		{
+			Element temp = root;
+			for(int i = 0; i< pos; i++)
+			{
+				temp = temp.getNext();
+			}
+			return temp;
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	//TODO
@@ -80,17 +104,36 @@ public class CommandList {
 	 * returns position number of command if its in the list, else -1
 	 * @return
 	 */
-	public int getPos(Command c) {
-		return 0;
+	public int getPos(Command c) { //Muss Methode auch mehrere gleiche Commands finden können?
+		
+		int size = this.getSize();
+		int pos = -1;
+		Element temp = root;
+		
+		for(int i = 0; i < size; i++)
+		{
+			if(c == temp.getElement())
+			{
+				pos = i;
+			}
+			temp = temp.getNext();
+		}
+		return pos;
 	}
 
-	//TODO
 	/**
 	 * returns number of elements in the List
 	 * @return
 	 */
 	public int getSize() {
-		return 0;
+		
+		Element temp = root;
+		int counter = 0;
+		while(temp.getNext() != null)
+		{
+			counter++;
+		}
+		return counter;
 	}
 
 	//TODO
