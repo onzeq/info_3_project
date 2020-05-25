@@ -99,12 +99,11 @@ public class CommandList {
 		}
 	}
 
-	//TODO
 	/**
 	 * returns position number of command if its in the list, else -1
 	 * @return
 	 */
-	public int getPos(Command c) { //Muss Methode auch mehrere gleiche Commands finden können?
+	public int getPos(Command c) {
 		
 		int size = this.getSize();
 		int pos = -1;
