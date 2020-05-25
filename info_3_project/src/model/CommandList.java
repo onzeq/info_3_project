@@ -138,27 +138,65 @@ public class CommandList {
 		return counter;
 	}
 
-	//TODO
 	/**
 	 * moves command in Position pos one up and returns the command itself
 	 * @param pos
 	 * @return
+	 * @Christian
 	 */
 	public Command moveUp(int pos) {
-		return null;
+		Element emov = this.getElement(pos);
+		Element eprev = emov.getPrev();
+		Element enext1 = emov.getNext();
+		Element enext2 = enext1.getNext();
+		if(pos >= this.getSize()) //Hier noch static int einfügen
+		{
+			return null;
+		}
+		else
+		{
+			eprev.setNext(enext1);
+			enext1.setPrev(eprev);
+			
+			emov.setNext(enext2);
+			enext2.setPrev(emov);
+			
+			enext1.setNext(emov);
+			emov.setPrev(enext1);
+			
+			return emov.getElement();
+		}
 	}
 
-	//TODO
 	/**
 	 * moves command in Position pos one down and returns the command itself
 	 * @param pos
 	 * @return
+	 * @Christian
 	 */
 	public Command moveDown(int pos) {
-		return null;
+		Element emov = this.getElement(pos);
+		Element eprev1 = emov.getPrev();
+		Element eprev2 = eprev1.getPrev();
+		Element enext = emov.getNext();
+		if(pos >= this.getSize() || pos <= 0) //Hier noch static int einfügen
+		{
+			return null;
+		}
+		else
+		{
+			eprev2.setNext(enext);
+			enext.setPrev(eprev2);
+			
+			eprev1.setNext(emov);
+			emov.setPrev(eprev1);
+			
+			emov.setNext(eprev2);
+			eprev2.setPrev(emov);
+			return emov.getElement();
+		}
 	}
 
-	//TODO
 	/**
 	 * Removes command in Position pos and returns it
 	 *  if operation is successful
