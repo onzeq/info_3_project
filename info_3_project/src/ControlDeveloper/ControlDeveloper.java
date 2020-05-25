@@ -23,28 +23,28 @@ public class ControlDeveloper {
 	 */
 	void createCommands() {
 		//1
-		Direction d1 = new Direction("--");
+		Direction d1 = new Direction("1");
 		d1.setDegree(50);
 		commands[counter++] = d1;
 		
 		//2
-		Gear g1 = new Gear("--");
+		Gear g1 = new Gear("2");
 		g1.setDuration(15);
 		g1.setSpeed(70);
 		commands[counter++] = g1;
 		
 		//3
-		Pause p1 = new  Pause("--");
+		Pause p1 = new  Pause("3");
 		p1.setDuration(10);
 		commands[counter++] = p1;
 		
 		//4
-		Direction d2 = new Direction("--");
+		Direction d2 = new Direction("4");
 		d2.setDegree(50);
 		commands[counter++] = d2;
 		
 		//5
-		Gear g2 = new Gear("--");
+		Gear g2 = new Gear("5");
 		g2.setDuration(15);
 		g2.setSpeed(70);
 		commands[counter++] = g2;
@@ -82,9 +82,10 @@ public class ControlDeveloper {
 		cl1.add(c1.commands[1]);
 		cl1.add(c1.commands[2]);
 		cl1.printList();
-		cl1.clear();
-		System.out.println("Inhalt gelöscht");
-		cl1.printList();
+		//cl1.clear();
+		System.out.println("Jetzt kommt Testt");
+		System.out.println(cl1.getPos(c1.commands[1]));
+		//cl1.printList();
 	}
 	
 

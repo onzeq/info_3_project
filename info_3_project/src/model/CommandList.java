@@ -71,6 +71,7 @@ public class CommandList {
 		}
 		else
 		{
+			//test
 			return null;
 		}
 				
@@ -112,9 +113,10 @@ public class CommandList {
 		
 		for(int i = 0; i < size; i++)
 		{
-			if(c == temp.getElement())
+			if(c.equals(temp.getElement()))
 			{
 				pos = i;
+				return pos;
 			}
 			temp = temp.getNext();
 		}
@@ -132,6 +134,7 @@ public class CommandList {
 		while(temp.getNext() != null)
 		{
 			counter++;
+			temp = temp.getNext();
 		}
 		return counter;
 	}
