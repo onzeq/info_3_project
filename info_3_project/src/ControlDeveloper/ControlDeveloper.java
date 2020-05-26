@@ -80,12 +80,20 @@ public class ControlDeveloper {
 		CommandList cl1 = new CommandList();
 		cl1.add(c1.commands[0]);
 		cl1.add(c1.commands[1]);
-		cl1.add(c1.commands[2]);
+//		cl1.add(c1.commands[2]);
+//		cl1.add(c1.commands[3]);
+//		cl1.add(c1.commands[4]);
 		cl1.printList();
 		//cl1.clear();
 		System.out.println("Jetzt kommt Testt");
 		System.out.println(cl1.getPos(c1.commands[1]));
-		//cl1.printList();
+		System.out.println(cl1.getSize());
+		System.out.println("Move down ");
+		cl1.moveDown(2);
+		cl1.printList();
+		cl1.add(c1.commands[4]);
+		cl1.printList();
+		
 	}
 	
 

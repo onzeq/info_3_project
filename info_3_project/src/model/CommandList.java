@@ -3,6 +3,7 @@ package model;
 public class CommandList {
 
 	private Element root;
+	private int size = 0;
 	public CommandList() {
 		root = new Element(null);
 		root.setNext(null);
@@ -17,14 +18,24 @@ public class CommandList {
 	public Command add(Command c) {
 		
 		Element current = root;
-		Element command = new Element(c);
+		Element command = new Element(c); //allocate new element
 		
+		command.setNext(null);
+		//List is empty
+		if (root.getNext() == null) {
+			command.setPrev(null);
+			root.setNext(command);
+			this.size++;
+			return c;
+		}
+		//List not empty append at the end
 		while(current.getNext() != null) {
 			current = current.getNext();
+			
 		}
 		current.setNext(command);
-		
-			
+		command.setPrev(current);
+		this.size++;
 		return c;
 	}
 	
@@ -100,12 +111,11 @@ public class CommandList {
 		}
 	}
 
-	//TODO
 	/**
 	 * returns position number of command if its in the list, else -1
 	 * @return
 	 */
-	public int getPos(Command c) { //Muss Methode auch mehrere gleiche Commands finden können?
+	public int getPos(Command c) {
 		
 		int size = this.getSize();
 		int pos = -1;
@@ -125,41 +135,118 @@ public class CommandList {
 
 	/**
 	 * returns number of elements in the List
-	 * @return
+	 * @return  private size attribute 
 	 */
 	public int getSize() {
 		
-		Element temp = root;
-		int counter = 0;
-		while(temp.getNext() != null)
-		{
-			counter++;
-			temp = temp.getNext();
-		}
-		return counter;
+//		Element temp = root;
+//		int counter = 0;
+//		while(temp.getNext() != null)
+//		{
+//			counter++;
+//			temp = temp.getNext();
+//		}
+		return this.size;
 	}
 
+
 	//TODO Walz
+
+	//github.com/onzeq/info_3_project
 	/**
 	 * moves command in Position pos one up and returns the command itself
 	 * @param pos
 	 * @return
+	 * @Christian
 	 */
 	public Command moveUp(int pos) {
-		return null;
+		//If element already at top or value is negative, operation not possible
+		if(pos > this.getSize() -1 || pos < 0) 
+		{
+			System.out.println("Operation nicht moeglich");
+			return null;
+		}
+		
+		
+		else
+		{
+			Element emov = this.getElement(pos);
+			Element eprev = emov.getPrev();
+			Element enext1 = emov.getNext();
+			Element enext2 = enext1.getNext();
+			
+			//catch error if at the begin of the list
+			if(eprev != null) {
+				eprev.setNext(enext1);
+				enext1.setPrev(eprev);
+			}
+			
+			else {
+				this.root.setNext(enext1);
+				enext1.setPrev(this.root);
+			}
+			//catch error if in the end of the list
+			if(enext2 != null)//somewhere in the middle of the list
+			{
+				emov.setNext(enext2);
+				enext2.setPrev(emov);
+			}
+			//if pos is second last element
+			else {
+				emov.setNext(null);
+			}
+			
+			
+				
+			
+			
+			enext1.setNext(emov);
+			emov.setPrev(enext1);
+			
+			return emov.getElement();
+		}
 	}
 
-	//TODO
 	/**
 	 * moves command in Position pos one down and returns the command itself
 	 * @param pos
 	 * @return
+	 * @Christian
 	 */
 	public Command moveDown(int pos) {
-		return null;
+		//check if out of range or already first element
+		if(pos > this.getSize() || pos <= 1) 
+		{
+			return null;
+		}
+		
+		else
+		{
+			Element emov = this.getElement(pos);
+			Element eprev1 = emov.getPrev();
+			Element eprev2 = eprev1.getPrev();
+			Element enext = emov.getNext();
+			
+			if(eprev2 != null) {
+				eprev2.setNext(emov);
+				emov.setPrev(eprev2);
+			}
+			else
+			{
+				this.root.setNext(emov);
+				emov.setPrev(this.root);
+			}
+			
+			
+			eprev1.setNext(enext);
+			eprev1.setPrev(emov);
+			emov.setNext(eprev1);
+			
+			
+			return emov.getElement();
+		}
 	}
 
-	//TODO
 	/**
 	 * Removes command in Position pos and returns it
 	 *  if operation is successful
@@ -167,6 +254,7 @@ public class CommandList {
 	 * @return
 	 */
 	public Command remove(int pos) {
+		this.size--;
 		return null;
 	}
 
