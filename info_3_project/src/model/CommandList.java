@@ -139,7 +139,7 @@ public class CommandList {
 		return counter;
 	}
 
-	//TODO
+	//TODO Walz
 	/**
 	 * moves command in Position pos one up and returns the command itself
 	 * @param pos
