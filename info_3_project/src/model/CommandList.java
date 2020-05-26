@@ -63,6 +63,7 @@ public class CommandList {
 	public void clear() {
 		//Content no longer accessable --> cleared or Memoery Leaks? Does the garbage collector the rest?
 		root.setNext(null);	
+		size = 0;
 	}
 	
 	
@@ -262,8 +263,38 @@ public class CommandList {
 	 * @return
 	 */
 	public Command remove(int pos) {
-		this.size--;
-		return null;
+		Element eremove = this.getElement(pos);
+		Element eprev = eremove.getPrev();
+		Element enext = eremove.getNext();
+		if(size == 0 ||  pos > size || eremove == null)
+		{
+			return null;
+		}
+		else if(pos == 1 && size == 1 )
+		{
+			this.clear();
+			return eremove.getElement();
+		}
+		else if(pos == 1 && size != 1)
+		{
+			root.setNext(enext);
+			this.size--;
+			return eremove.getElement();
+		}
+		else if(enext == null)
+		{
+			eprev.setNext(null);
+			this.size--;
+			return eremove.getElement();
+		}		
+		else
+		{
+			enext.setPrev(eprev);
+			eprev.setNext(enext);
+			this.size--;
+			return eremove.getElement();
+		}
+		
 	}
 
 
