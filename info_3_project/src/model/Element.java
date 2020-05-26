@@ -1,6 +1,6 @@
 package model;
 
-//import model.*;
+
 public class Element {
 
 	private Element next;
@@ -42,15 +42,14 @@ public class Element {
 	
 	
 	
-	//TODO
+	
 	/**
 	 * What in should be returned?? number of prev?
 	 * @param el
 	 * @return
 	 */
-	public int setPrev(Element el) {
+	public void setPrev(Element el) {
 		this.prev = el;
-		return 0;
 	}
 	
 	

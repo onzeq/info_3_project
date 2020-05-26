@@ -12,6 +12,7 @@ public class CommandList {
 	
 	/**
 	 * adds a command at the end of the list
+	 * @author jakob
 	 * @param c 
 	 * @return returns the command itself if operation works
 	 */
@@ -41,6 +42,7 @@ public class CommandList {
 	
 	/**
 	 * Method to check the content of the List
+	 * @author jakob
 	 */
 	public void printList() {
 		//Root itself is null, start at next element
@@ -68,6 +70,7 @@ public class CommandList {
 	 * returns command instance in certain position pos, 
 	 * if at least pos - elements in the list, else null
 	 * @param pos
+	 * @author Christian
 	 * @return
 	 */
 	public Command getCommand(int pos) {
@@ -93,6 +96,7 @@ public class CommandList {
 	 * returns element instance in Position pos, 
 	 * if enough elements in the list, else null
 	 * @param pos
+	 * @author Christian
 	 * @return
 	 */
 	private Element getElement(int pos) {
@@ -117,11 +121,11 @@ public class CommandList {
 	 */
 	public int getPos(Command c) {
 		
-		int size = this.getSize();
 		int pos = -1;
+		int i = 0;
 		Element temp = root;
 		
-		for(int i = 0; i < size; i++)
+		do
 		{
 			if(c.equals(temp.getElement()))
 			{
@@ -129,7 +133,10 @@ public class CommandList {
 				return pos;
 			}
 			temp = temp.getNext();
-		}
+			i++;
+		}while(temp != null);
+		
+		//reaches if command not in the list
 		return pos;
 	}
 
@@ -150,7 +157,7 @@ public class CommandList {
 	}
 
 
-	//TODO Walz
+	
 
 	//github.com/onzeq/info_3_project
 	/**
@@ -247,6 +254,7 @@ public class CommandList {
 		}
 	}
 
+	//TODO
 	/**
 	 * Removes command in Position pos and returns it
 	 *  if operation is successful
