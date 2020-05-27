@@ -84,13 +84,7 @@ public class ControlDeveloper {
 		cl1.add(c1.commands[3]);
 		cl1.add(c1.commands[4]);
 		cl1.printList();
-		//cl1.clear();
-		//System.out.println("Jetzt kommt Testt");
-		//System.out.println(cl1.getPos(c1.commands[4]));
-		//System.out.println(cl1.getSize());
-		//System.out.println("Move down ");
-		//cl1.moveUp(2);
-		//cl1.printList();
+		
 		System.out.println("Remove Test 1:");
 		cl1.remove(7);
 		cl1.printList();
