@@ -266,7 +266,7 @@ public class CommandList {
 		Element eremove = this.getElement(pos);
 		Element eprev = eremove.getPrev();
 		Element enext = eremove.getNext();
-		if(size == 0 ||  pos > size || eremove == null)
+		if(size == 0 ||  pos > size || pos <=0 || eremove == null)
 		{
 			return null;
 		}
