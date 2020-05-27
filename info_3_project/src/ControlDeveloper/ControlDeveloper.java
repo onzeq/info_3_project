@@ -92,7 +92,7 @@ public class ControlDeveloper {
 		//cl1.moveUp(2);
 		//cl1.printList();
 		System.out.println("Remove Test 1:");
-		cl1.remove(1);
+		cl1.remove(7);
 		cl1.printList();
 		System.out.println(cl1.getSize());
 		System.out.println("Remove Test 2:");
@@ -108,7 +108,7 @@ public class ControlDeveloper {
 		cl1.printList();
 		System.out.println(cl1.getSize());
 		System.out.println("Remove Test 5:");
-		cl1.clear();
+		cl1.remove(1);
 		cl1.printList();
 		System.out.println(cl1.getSize());
 		

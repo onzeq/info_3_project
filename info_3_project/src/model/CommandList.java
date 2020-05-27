@@ -264,8 +264,18 @@ public class CommandList {
 	 */
 	public Command remove(int pos) {
 		Element eremove = this.getElement(pos);
-		Element eprev = eremove.getPrev();
-		Element enext = eremove.getNext();
+		Element eprev;
+		Element enext;
+		if(eremove != null)
+		{
+			eprev = eremove.getPrev();
+			enext = eremove.getNext();
+		}
+		else
+		{
+			eprev = null;
+			enext = null;
+		}
 		if(size == 0 ||  pos > size || pos <=0 || eremove == null)
 		{
 			return null;
