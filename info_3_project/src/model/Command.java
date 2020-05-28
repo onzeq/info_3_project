@@ -26,7 +26,7 @@ public abstract class Command implements ICommand{
 	public String getName() {
 		return this.name;
 	}
-	public abstract String getConfig();
+	public abstract String getConfig(); //getConfig gets implementd in the subclasses because they have different needs and parameters
 }
 
 

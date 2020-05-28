@@ -8,7 +8,7 @@ import hsrt.mec.controldeveloper.core.com.command.*;
 @SuppressWarnings("serial")
 public class Direction extends Command implements IDirection {
 	
-	private int degree; //Wertebereich [-90;90]
+	private int degree;
 	
 	/**
 	 * 

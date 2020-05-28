@@ -1,9 +1,17 @@
 package model;
-
+/**
+ * adds a command at the end of the list
+ * @author Christian
+ */
 public class CommandList {
-
+	/**
+	 * class Variables for that are needed for creating a linked List
+	 */
 	private Element root;
-	private int size = 0;
+	private int size = 0; //Parameter Size because of runtime
+	/**
+	 * constructor that creates a root element and sets next and prev element null
+	 */
 	public CommandList() {
 		root = new Element(null);
 		root.setNext(null);
@@ -12,7 +20,6 @@ public class CommandList {
 	
 	/**
 	 * adds a command at the end of the list
-	 * @author jakob
 	 * @param c 
 	 * @return returns the command itself if operation works
 	 */
@@ -75,10 +82,10 @@ public class CommandList {
 	 * @return
 	 */
 	public Command getCommand(int pos) {
-		if(pos <= this.getSize()) //Laufzeit jedesmal Funtkionsaufruf?
+		if(pos <= size) //Checking for valid position 
 		{
 			Element temp = root;
-			for(int i = 0; i< pos; i++)
+			for(int i = 0; i< pos; i++) //looping through list until pos is reached
 			{
 				temp = temp.getNext();
 			}
@@ -86,7 +93,6 @@ public class CommandList {
 		}
 		else
 		{
-			//test
 			return null;
 		}
 				
@@ -101,8 +107,9 @@ public class CommandList {
 	 * @return
 	 */
 	private Element getElement(int pos) {
-		if(pos <= this.getSize()) //Laufzeit jedesmal Funtkionsaufruf?
+		if(pos <= size) //is pos in the list?
 		{
+			//go to pos and return the Element
 			Element temp = root;
 			for(int i = 0; i< pos; i++)
 			{
@@ -121,11 +128,11 @@ public class CommandList {
 	 * @return
 	 */
 	public int getPos(Command c) {
-		
+		//if command isnt in comandlist return -1
 		int pos = -1;
 		int i = 0;
 		Element temp = root;
-		
+		 //checking all elements for command c, count position and return it
 		do
 		{
 			if(c.equals(temp.getElement()))
@@ -146,21 +153,10 @@ public class CommandList {
 	 * @return  private size attribute 
 	 */
 	public int getSize() {
-		
-//		Element temp = root;
-//		int counter = 0;
-//		while(temp.getNext() != null)
-//		{
-//			counter++;
-//			temp = temp.getNext();
-//		}
+		//return size param that is counted in all add and remove methods
 		return this.size;
 	}
-
-
 	
-
-	//github.com/onzeq/info_3_project
 	/**
 	 * moves command in Position pos one up and returns the command itself
 	 * @param pos
@@ -174,10 +170,10 @@ public class CommandList {
 			System.out.println("Operation nicht moeglich");
 			return null;
 		}
-		
-		
+		//operation is possible
 		else
 		{
+			//create elements that are needed
 			Element emov = this.getElement(pos);
 			Element eprev = emov.getPrev();
 			Element enext1 = emov.getNext();
@@ -188,7 +184,6 @@ public class CommandList {
 				eprev.setNext(enext1);
 				enext1.setPrev(eprev);
 			}
-			
 			else {
 				this.root.setNext(enext1);
 				enext1.setPrev(this.root);
@@ -204,10 +199,6 @@ public class CommandList {
 				emov.setNext(null);
 			}
 			
-			
-				
-			
-			
 			enext1.setNext(emov);
 			emov.setPrev(enext1);
 			
@@ -218,7 +209,6 @@ public class CommandList {
 	/**
 	 * moves command in Position pos one down and returns the command itself
 	 * @param pos
-	 * @return
 	 * @Christian
 	 */
 	public Command moveDown(int pos) {
@@ -227,7 +217,7 @@ public class CommandList {
 		{
 			return null;
 		}
-		
+		//operation is possible
 		else
 		{
 			Element emov = this.getElement(pos);
@@ -235,11 +225,12 @@ public class CommandList {
 			Element eprev2 = eprev1.getPrev();
 			Element enext = emov.getNext();
 			
+			//check: start of the list?
 			if(eprev2 != null) {
 				eprev2.setNext(emov);
 				emov.setPrev(eprev2);
 			}
-			else
+			else //if start of the list, root is needed
 			{
 				this.root.setNext(emov);
 				emov.setPrev(this.root);
@@ -250,12 +241,11 @@ public class CommandList {
 			eprev1.setPrev(emov);
 			emov.setNext(eprev1);
 			
-			
+			//return the moved Element
 			return emov.getElement();
 		}
 	}
 
-	//TODO
 	/**
 	 * Removes command in Position pos and returns it
 	 *  if operation is successful
@@ -263,31 +253,44 @@ public class CommandList {
 	 * @return
 	 */
 	public Command remove(int pos) {
+		//create elements that are needed for the operation
 		Element eremove = this.getElement(pos);
-		Element eprev = eremove.getPrev();
-		Element enext = eremove.getNext();
-		if(size == 0 ||  pos > size || eremove == null)
+		Element eprev;
+		Element enext;
+		//chec wheter the element exists
+		if(eremove != null)
+		{
+			eprev = eremove.getPrev();
+			enext = eremove.getNext();
+		}
+		else
+		{
+			eprev = null;
+			enext = null;
+		}
+		//if element is at a unvalid pos return null
+		if(size == 0 ||  pos > size || pos <=0 || eremove == null)
 		{
 			return null;
 		}
-		else if(pos == 1 && size == 1 )
+		else if(pos == 1 && size == 1 ) // is only 1 element existing?
 		{
 			this.clear();
 			return eremove.getElement();
 		}
-		else if(pos == 1 && size != 1)
+		else if(pos == 1 && size != 1) // element is at first place --> link root
 		{
 			root.setNext(enext);
 			this.size--;
 			return eremove.getElement();
 		}
-		else if(enext == null)
+		else if(enext == null) //is element at end of the list
 		{
 			eprev.setNext(null);
 			this.size--;
 			return eremove.getElement();
 		}		
-		else
+		else //element is somewhere in the list
 		{
 			enext.setPrev(eprev);
 			eprev.setNext(enext);
