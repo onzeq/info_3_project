@@ -1,7 +1,5 @@
 package ControlDeveloper;
-
 import model.*;
-
 
 public class ControlDeveloper {
 	//Max Anzahl im Array
@@ -48,35 +46,30 @@ public class ControlDeveloper {
 		g2.setDuration(15);
 		g2.setSpeed(70);
 		commands[counter++] = g2;
-		
-		
-		
-		
-		
 	}
-		
 	
-	
+	/**
+	 * Looping through the array and printing all configs
+	 */
 	public void printCommands() {
 		for(int i =0; i < counter; i++) {
 			System.out.println(commands[i].getConfig());
 		}
-		
 	}
 	
 	//Main funktion
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
+		//Aufgabe 1:
 		ControlDeveloper c1 = new ControlDeveloper();
 		System.out.println(c1.ControlDeveloper_Member); //Zugriff ueber Objekt(Instanz)
 		System.out.println(ControlDeveloper.ControlDeveloper_Class); //Zugriff ueber Klasse selbst
 		
+		//Aufgabe 2/3:
 		c1.createCommands();
 		c1.printCommands();
-		
-		
 		System.out.println("Ausgabe Liste");
+		
+		//Aufgabe 4:
 		CommandList cl1 = new CommandList();
 		cl1.add(c1.commands[0]);
 		cl1.add(c1.commands[1]);
@@ -85,6 +78,7 @@ public class ControlDeveloper {
 		cl1.add(c1.commands[4]);
 		cl1.printList();
 		
+		//Remove different Objects and check for errors
 		System.out.println("Remove Test 1:");
 		cl1.remove(7);
 		cl1.printList();
@@ -102,6 +96,10 @@ public class ControlDeveloper {
 		cl1.printList();
 		System.out.println(cl1.getSize());
 		System.out.println("Remove Test 5:");
+		cl1.remove(1);
+		cl1.printList();
+		System.out.println(cl1.getSize());
+		System.out.println("Remove Test 6:");
 		cl1.remove(1);
 		cl1.printList();
 		System.out.println(cl1.getSize());

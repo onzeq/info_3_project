@@ -1,8 +1,14 @@
 package model;
-
+/**
+ * defines the Elements in the linked List
+ * @author Christian
+ * @version 1.0.
+ */
 
 public class Element {
-
+	/**
+	 * class variables for a list element
+	 */
 	private Element next;
 	private Element prev;
 	private Command element;
@@ -40,18 +46,14 @@ public class Element {
 		return this.next;
 	}
 	
-	
-	
-	
 	/**
-	 * What in should be returned?? number of prev?
+	 * set previous Element in the List
 	 * @param el
 	 * @return
 	 */
 	public void setPrev(Element el) {
 		this.prev = el;
 	}
-	
 	
 	/**
 	 * gets previous Command
@@ -60,6 +62,4 @@ public class Element {
 	public Element getPrev() {
 		return this.prev;
 	}
-	
-
 }
