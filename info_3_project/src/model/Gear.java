@@ -9,6 +9,7 @@ import hsrt.mec.controldeveloper.core.com.command.IGear;
  */
 @SuppressWarnings("serial")
 public class Gear extends Command implements IGear{
+	//private attributes to store values of speed and duration
 	private int speed;
 	private int duration;
 	
@@ -17,7 +18,7 @@ public class Gear extends Command implements IGear{
 	 * @param name Instanzvariable bekommt String uebergeben
 	 */
 	public Gear(String name) {
-		super(name);
+		super(name); //calls constructor of superclass
 	}
 	
 	/**
@@ -42,11 +43,11 @@ public class Gear extends Command implements IGear{
 	 */
 	public void setSpeed(int speed) {
 		
-		//innerhalb der Grenzen
+		//in range
 		if(speed < 100 && speed > -100 ) {
 			this.speed = speed;
 		}
-		//außerhalb der Grenzen
+		//out of range
 		else if(speed > 100) {
 			this.speed = 100;
 		}
@@ -67,6 +68,7 @@ public class Gear extends Command implements IGear{
 	/**
 	 * returns String with Configuration Infos
 	 */
+	//abstract from superclass implemented individally for Direction
 	public String getConfig() {
 		String config = "Name:  " + this.getName() +" "+  speed + " cm/sec " + duration + " sec";
 		return config;

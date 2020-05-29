@@ -7,7 +7,10 @@ public class CommandList {
 	/**
 	 * class Variables for that are needed for creating a linked List
 	 */
-	private Element root;
+	//root gets no values in our implementation
+	//just points to the first element with storage
+	private Element root; 
+	
 	private int size = 0; //Parameter Size because of runtime
 	/**
 	 * constructor that creates a root element and sets next and prev element null
@@ -51,6 +54,7 @@ public class CommandList {
 	 * Method to check the content of the List
 	 * @author jakob
 	 */
+	//help method for debugging 
 	public void printList() {
 		//Root itself is null, start at next element
 		Element current = root.getNext();

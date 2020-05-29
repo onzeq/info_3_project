@@ -8,6 +8,7 @@ import hsrt.mec.controldeveloper.core.com.command.*;
 @SuppressWarnings("serial")
 public class Direction extends Command implements IDirection {
 	
+	//private attribute for storing the steering degree value
 	private int degree;
 	
 	/**
@@ -15,6 +16,7 @@ public class Direction extends Command implements IDirection {
 	 * @param name Name wird der Instanzvariable uebergeben
 	 */
 	public Direction(String name) {
+		//sets the name in the superclass, calls constructor of superclass
 		super(name);
 	}
 	
@@ -31,9 +33,11 @@ public class Direction extends Command implements IDirection {
 	 * @param value Wert wird der Instanzvariablen uebergeben, wenn Wert auﬂerhalb der Grenzen, wird Grenzwert uebergeben
 	 */
 	public void setDegree(int value) {
+		//in range
 		if(value <90 && value > -90) {
 			this.degree = value;
 		}
+		//out of range
 		else if(value < -90) {
 			this.degree = -90;
 		}
@@ -45,6 +49,7 @@ public class Direction extends Command implements IDirection {
 	/**
 	 * returns String with Configuration Infos
 	 */
+	//abstract from superclass implemented individally for Direction
 	public String getConfig() {
 		String config = "Name:  " + this.getName() +" "+  degree + " degree";
 		return config;

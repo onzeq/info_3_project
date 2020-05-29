@@ -8,8 +8,11 @@ import hsrt.mec.controldeveloper.core.com.command.ICommand;
  * @
  */
 @SuppressWarnings("serial")
+//Abstract because getConfig is individually implemented for inherited classes 
+//--> class has to be abstract so you cant create an instance of a class not fully implemented
 public abstract class Command implements ICommand{
 	
+	//String for command name
 	private String name;
 	/**
 	 * 
