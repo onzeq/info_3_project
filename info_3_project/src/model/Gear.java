@@ -10,6 +10,8 @@ import hsrt.mec.controldeveloper.core.com.command.IGear;
 @SuppressWarnings("serial")
 public class Gear extends Command implements IGear{
 	//private attributes to store values of speed and duration
+	private static int MINSPEED = -100;
+	private static int MAXSPEED = 100;
 	private int speed;
 	private int duration;
 	
@@ -44,15 +46,15 @@ public class Gear extends Command implements IGear{
 	public void setSpeed(int speed) {
 		
 		//in range
-		if(speed < 100 && speed > -100 ) {
+		if(speed < MAXSPEED && speed > MINSPEED ) {
 			this.speed = speed;
 		}
 		//out of range
-		else if(speed > 100) {
-			this.speed = 100;
+		else if(speed > MAXSPEED) {
+			this.speed = MAXSPEED;
 		}
-		else if(speed < -100) {
-			this.speed = -100;
+		else if(speed < MINSPEED) {
+			this.speed = MINSPEED;
 		}
 		
 	}

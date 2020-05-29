@@ -88,12 +88,7 @@ public class CommandList {
 	public Command getCommand(int pos) {
 		if(pos <= size) //Checking for valid position 
 		{
-			Element temp = root;
-			for(int i = 0; i< pos; i++) //looping through list until pos is reached
-			{
-				temp = temp.getNext();
-			}
-			return temp.getElement();
+			return getElement(pos).getElement();
 		}
 		else
 		{
@@ -169,7 +164,7 @@ public class CommandList {
 	 */
 	public Command moveUp(int pos) {
 		//If element already at top or value is negative, operation not possible
-		if(pos > this.getSize() -1 || pos < 0) 
+		if(pos > size-1 || pos < 0) 
 		{
 			System.out.println("Operation nicht moeglich");
 			return null;
@@ -219,6 +214,7 @@ public class CommandList {
 		//check if out of range or already first element
 		if(pos > this.getSize() || pos <= 1) 
 		{
+			System.out.println("Operation nicht moeglich");
 			return null;
 		}
 		//operation is possible
@@ -275,6 +271,7 @@ public class CommandList {
 		//if element is at a unvalid pos return null
 		if(size == 0 ||  pos > size || pos <=0 || eremove == null)
 		{
+			System.out.println("Operation nicht moeglich");
 			return null;
 		}
 		else if(pos == 1 && size == 1 ) // is only 1 element existing?

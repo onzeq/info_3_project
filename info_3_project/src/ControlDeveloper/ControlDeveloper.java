@@ -78,31 +78,39 @@ public class ControlDeveloper {
 		cl1.add(c1.commands[4]);
 		cl1.printList();
 		
+		
+		System.out.println("MoveUp:");
+		cl1.moveUp(5);
+		cl1.printList();
+		System.out.println("MoveDown:");
+		cl1.moveDown(1);
+		cl1.printList();
+	
 		//Remove different Objects and check for errors
-		System.out.println("Remove Test 1:");
-		cl1.remove(7);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 2:");
-		cl1.remove(3);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 3:");
-		cl1.remove(3);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 4:");
-		cl1.remove(2);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 5:");
-		cl1.remove(1);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 6:");
-		cl1.remove(1);
-		cl1.printList();
-		System.out.println(cl1.getSize());
+//		System.out.println("Remove Test 1:");
+//		cl1.remove(7);
+//		cl1.printList();
+//		System.out.println(cl1.getSize());
+//		System.out.println("Remove Test 2:");
+//		cl1.remove(3);
+//		cl1.printList();
+//		System.out.println(cl1.getSize());
+//		System.out.println("Remove Test 3:");
+//		cl1.remove(3);
+//		cl1.printList();
+//		System.out.println(cl1.getSize());
+//		System.out.println("Remove Test 4:");
+//		cl1.remove(2);
+//		cl1.printList();
+//		System.out.println(cl1.getSize());
+//		System.out.println("Remove Test 5:");
+//		cl1.remove(1);
+//		cl1.printList();
+//		System.out.println(cl1.getSize());
+//		System.out.println("Remove Test 6:");
+//		cl1.remove(1);
+//		cl1.printList();
+//		System.out.println(cl1.getSize());
 		
 		
 	}

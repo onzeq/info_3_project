@@ -8,6 +8,8 @@ import hsrt.mec.controldeveloper.core.com.command.*;
 @SuppressWarnings("serial")
 public class Direction extends Command implements IDirection {
 	
+	private static int MAXDEGREE = 90;
+	private static int MINDEGREE = -90;
 	//private attribute for storing the steering degree value
 	private int degree;
 	
@@ -34,15 +36,16 @@ public class Direction extends Command implements IDirection {
 	 */
 	public void setDegree(int value) {
 		//in range
-		if(value <90 && value > -90) {
+		
+		if(value <MAXDEGREE && value > MINDEGREE) {
 			this.degree = value;
 		}
 		//out of range
-		else if(value < -90) {
-			this.degree = -90;
+		else if(value < MINDEGREE) {
+			this.degree = MINDEGREE;
 		}
-		else if(value > 90) {
-			this.degree = 90;
+		else if(value > MAXDEGREE) {
+			this.degree = MAXDEGREE;
 		}
 	}
 
