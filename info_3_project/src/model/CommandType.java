@@ -1,5 +1,5 @@
 package model;
-import model.Command;
+import model.*;
 /**
  * Class for three Commandtypes
  * @author jakob
@@ -28,17 +28,37 @@ public class CommandType {
 	 * @return
 	 */
 	public Command createInstance() {
-		Command c = new Command();
-		return c;
+		//What does to call looks like? How does Method know, which case
+		int commandType = 0;
+		switch (commandType) {
+		case 1:
+			Direction d = new Direction("Direction");
+			return d;
+			
+			
+		case 2:
+			Gear g = new Gear("Gear");
+			return g;
+			
+		
+		case 3:
+			Pause p = new Pause("Pause");
+			return p;
+			
+		default:
+			return null;
+			
+		}
+		
 	}
 	
 	//TODO
 	/**
-	 * returns name of command WHERES THE DIFFERENCE TO getName?
+	 * returns name of command 
 	 */
+	//WHERES THE DIFFERENCE TO getName?
 	public String toString() {
-		String s = "";
-		return s;
+		return this.getName();
 	}
 
 }
