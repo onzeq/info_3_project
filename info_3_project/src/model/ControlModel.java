@@ -26,14 +26,19 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 */
 	private ControlModel(){}
 	
-	
+	//Singleton
 	public static ControlModel getModel() //singelton verhindert das mehr als 1 object der klasse erzeugt werden kann
 	{
 		 if (ControlModel.cM == null) 
 		 {
 			 ControlModel.cM = new ControlModel();
+			 return ControlModel.cM;
 		 }
-		 return ControlModel.cM;
+		 else {
+			 System.out.println("Es gibt schon eine Instanz");
+			 return null;
+		 }
+		 
 	}
 	
 	public CommandList getCommandList()
@@ -99,7 +104,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 * reicht implement um ControlModel als IComLisstener Observer zu machen?
 	 * was soll in der Methode passieren?
 	 */
-	public void commandPerformed(ICommand c, int i)  //c ist ausgeführtes Commando; i ist ComHandler status  
+	public void commandPerformed(ICommand c, int comHandlerState)  //c ist ausgeführtes Commando; i ist ComHandler status  
 	{
 		if(c == null)
 		{

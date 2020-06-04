@@ -1,5 +1,5 @@
 package model;
-import model.*;
+
 /**
  * Class for three Commandtypes
  * @author jakob
@@ -29,19 +29,19 @@ public class CommandType {
 	 */
 	public Command createInstance() {
 		//What does to call looks like? How does Method know, which case
-		int commandType = 0;
-		switch (commandType) {
-		case 1:
+		
+		switch (this.name) {
+		case "Direction":
 			Direction d = new Direction("Direction");
 			return d;
 			
 			
-		case 2:
+		case "Gear":
 			Gear g = new Gear("Gear");
 			return g;
 			
 		
-		case 3:
+		case "Pause":
 			Pause p = new Pause("Pause");
 			return p;
 			

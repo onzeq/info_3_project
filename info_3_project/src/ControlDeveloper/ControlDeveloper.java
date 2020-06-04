@@ -131,6 +131,9 @@ public class ControlDeveloper {
 		System.out.println("Controllmodel Singeton erstellt");
 		cm1.start();
 		ControlModel cm2 = ControlModel.getModel();
+		if(cm2 == null) {
+			System.out.println("Instanz nicht angelegt");
+		}
 	}
 	
 

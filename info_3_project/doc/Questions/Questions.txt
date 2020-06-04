@@ -1,0 +1,21 @@
+class CommandType:
+	- Unterschied getName, toString
+	- Wie muss createInstance implementiert sein? Keine Übergabeparameter trotzdem fallunterscheidung
+	
+	-Welchen nutzen hat Klasse CommandType?
+	-Was ist der Name eines Befehls
+	
+class ControlModel:
+	- commandPerformed
+		Aus dem privaten Attribut commandList werden Befehle in die Methode gegeben, 
+		Was macht aber comHandlerState? Was bedeutet ausführen? Brauchen wir hierfür die duration?
+	
+start stop:
+	Wo werden Methoden aufgerufen? 
+	
+ControlModel als IComListener-Observer:
+	Über was für Änderungen wird ControlModel informiert?
+		
+		
+FileHandler:
+	Wie sieht ein solches File aus? Muss das File geparst werden und Informationen rausgesucht werden?
