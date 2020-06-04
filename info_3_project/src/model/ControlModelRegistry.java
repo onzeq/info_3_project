@@ -1,9 +1,9 @@
 package model;
 import java.util.Vector;//for using the Vector class
-import java.util.Iterator;//for iterating through the Vector
+
 public class ControlModelRegistry {
 
-	private Vector<ControlModelListener> registry = new Vector();
+	private Vector<IControlModelListener> registry = new Vector<IControlModelListener>();
 	
 	//Constructor
 	public ControlModelRegistry() {}
@@ -11,7 +11,7 @@ public class ControlModelRegistry {
 	/**
 	 * adds a new ControlModelListener to registry
 	 */
-	public void addControlModelListenerr(ControlModelListener c) {
+	public void addControlModelListenerr(IControlModelListener c) {
 		//calls add method for vectors
 		registry.add(c);
 	}
@@ -21,7 +21,7 @@ public class ControlModelRegistry {
 	 * Removes a certain CML fro registry
 	 * @param CML we want to remove
 	 */
-	public void removeControlModelListener(ControlModelListener c) {
+	public void removeControlModelListener(IControlModelListener c) {
 		//calls remove method for vectors and removes the transfer parameter c
 		registry.remove(c);
 	}
@@ -31,13 +31,12 @@ public class ControlModelRegistry {
 	 * @param s Message String
 	 */
 	public void notifyMessageChange(String s) {
-		Iterator a = registry.iterator();
+		//all Listeners stored in the vector receive a message 
 		for(int i = 0; i< registry.size(); i++) {
 			
-			
+			registry.get(i).messageUpdated(s);
 		}
 			
-		
 	}
 	
 	/**
@@ -45,7 +44,10 @@ public class ControlModelRegistry {
 	 * @param s 
 	 */
 	public void notifyRoverChanged() {
-		
+		//all Listeners stored in the vector receive update
+		for(int i = 0; i< registry.size(); i++) {
+			registry.get(i).roverUpdated();
+		}
 	}
 	
 }

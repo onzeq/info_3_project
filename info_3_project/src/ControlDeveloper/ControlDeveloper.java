@@ -127,8 +127,10 @@ public class ControlDeveloper {
 		cl1.remove(1);
 		cl1.printList();
 		System.out.println(cl1.getSize());
-		
-		
+		ControlModel cm1 = ControlModel.getModel();
+		System.out.println("Controllmodel Singeton erstellt");
+		cm1.start();
+		ControlModel cm2 = ControlModel.getModel();
 	}
 	
 
