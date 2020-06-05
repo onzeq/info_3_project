@@ -9,7 +9,7 @@ import hsrt.mec.controldeveloper.core.com.Rover;
 import hsrt.mec.controldeveloper.core.com.RoverHandler;
 
 public class ControlModel extends ControlModelRegistry implements IComListener{
-	public static int NOROVERSELECTED = -1;
+	public final static int NOROVERSELECTED = -1;
 	private static ControlModel cM;
 	private Rover selectedRover;
 	
@@ -72,6 +72,9 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 * warum wird auf file konsturktor hingewiesen wenn ganzes file und keine pfad übergeben wird?
 	 * was für ein Vector soll verwendet werden wenn in Objekt keiner angeben
 	 * was soll passieren?
+	 * 
+	 * --> einzelnen Commands in die Liste schreiben
+	 * --> File methode f.exists
 	 */
 	public void readCommands(File f) 
 	{
@@ -89,10 +92,12 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	/**TODO
 	 * was für bool soll returned werden
 	 * wie/über was starte/stoppe ich ausführung von Commandlist? -> in CommandList ist keine Methode vorhanden
+	 * 
+	 * --> über comhandler instance holen --> vektor der mit commands befüllt wird
 	 */
 	public boolean start()
 	{
-		return true;
+		return true; //comhandler.start...
 	}
 	public boolean stop()
 	{
@@ -103,6 +108,8 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	/**TODO
 	 * reicht implement um ControlModel als IComLisstener Observer zu machen?
 	 * was soll in der Methode passieren?
+	 * 
+	 * --> Testfunktion
 	 */
 	public void commandPerformed(ICommand c, int comHandlerState)  //c ist ausgeführtes Commando; i ist ComHandler status  
 	{

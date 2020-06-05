@@ -1,5 +1,7 @@
 package ControlDeveloper;
 import model.*;
+
+import java.io.File;
 import java.util.Random;
 
 
@@ -14,7 +16,8 @@ public class ControlDeveloper {
 	
 	//Array zum Speichern von Befehlen
 	public Command commands[] = new Command[MAXCOMMANDS];
-	
+	static String path = "tesast";
+	static File testfile = new File(path);
 	//Konstruktor
 	public ControlDeveloper() {}
 	
@@ -134,6 +137,9 @@ public class ControlDeveloper {
 		if(cm2 == null) {
 			System.out.println("Instanz nicht angelegt");
 		}
+		
+		//static String path = ""
+		
 	}
 	
 
