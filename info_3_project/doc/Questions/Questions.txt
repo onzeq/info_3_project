@@ -19,3 +19,19 @@ ControlModel als IComListener-Observer:
 		
 FileHandler:
 	Wie sieht ein solches File aus? Muss das File geparst werden und Informationen rausgesucht werden?
+	
+	
+	
+	Antworten:
+	variablen commandModel: noch nicht relevant in Blatt2
+	objectfilehandler
+	readCommands: Liest file und schreibt commands in die Liste
+	f.exists
+	
+	start button --> wenn start gedrückt --> comHandler hat funktion start
+	von comHandler instanz holen , wenn start gedrückt wird, comHandler start aufrufen
+	command.start()
+	
+	
+	commandPerformed(...,...) reine Testfunktion zur Ausgabe 
+	commandType in  GuiTabelle 
