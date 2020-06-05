@@ -2,6 +2,8 @@ package model;
 
 import java.io.File;
 import java.util.Vector;
+
+import hsrt.mec.controldeveloper.core.com.ComHandler;
 import hsrt.mec.controldeveloper.core.com.IComListener;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 import hsrt.mec.controldeveloper.io.ObjectFileHandler;
@@ -10,6 +12,7 @@ import hsrt.mec.controldeveloper.core.com.RoverHandler;
 
 public class ControlModel extends ControlModelRegistry implements IComListener{
 	public final static int NOROVERSELECTED = -1;
+	private final String PATH = "C:\\Users\\Christian\\Desktop";
 	private static ControlModel cM;
 	private Rover selectedRover;
 	
@@ -94,14 +97,19 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 * wie/über was starte/stoppe ich ausführung von Commandlist? -> in CommandList ist keine Methode vorhanden
 	 * 
 	 * --> über comhandler instance holen --> vektor der mit commands befüllt wird
+	 * 
+	 * --> ComHandler wie nutzen? Wann wird icommand vector eingeführt --> ComHandler als Instanz Variable?
 	 */
 	public boolean start()
 	{
-		return true; //comhandler.start...
+		ComHandler cM = null;
+		Vector<ICommand> vC = new Vector<ICommand>(); 
+		return cM.start(vC, selectedRover);
 	}
 	public boolean stop()
 	{
-		return true;
+		ComHandler cM = null;
+		return cM.stop();
 	}
 	
 	

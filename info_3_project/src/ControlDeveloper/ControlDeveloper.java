@@ -1,9 +1,13 @@
 package ControlDeveloper;
 import model.*;
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.Random;
-
+import java.util.Vector;
+import hsrt.mec.controldeveloper.io.ObjectFileHandler;
 
 public class ControlDeveloper {
 	//Max Anzahl im Array
@@ -16,8 +20,7 @@ public class ControlDeveloper {
 	
 	//Array zum Speichern von Befehlen
 	public Command commands[] = new Command[MAXCOMMANDS];
-	static String path = "tesast";
-	static File testfile = new File(path);
+
 	//Konstruktor
 	public ControlDeveloper() {}
 	
@@ -137,9 +140,7 @@ public class ControlDeveloper {
 		if(cm2 == null) {
 			System.out.println("Instanz nicht angelegt");
 		}
-		
-		//static String path = ""
-		
+
 	}
 	
 
