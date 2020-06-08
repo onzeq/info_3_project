@@ -3,11 +3,15 @@ import model.*;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.util.Random;
 import java.util.Vector;
+import java.io.FileWriter; 
 import hsrt.mec.controldeveloper.io.ObjectFileHandler;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 public class ControlDeveloper {
 	//Max Anzahl im Array
@@ -18,6 +22,7 @@ public class ControlDeveloper {
 	public String ControlDeveloper_Member = "MEMBER Control-Developer"; //nur fuer eine Instanz gültig , veränderter Wert nur für die eine Instanz verändert
 	public static String ControlDeveloper_Class = "CLASS Control-Developer"; //Klassenvariable --> statische Variable verändert sich in allen Objekten der Klasse 
 	
+	private static String PATH = "file.obj";
 	//Array zum Speichern von Befehlen
 	public Command commands[] = new Command[MAXCOMMANDS];
 
@@ -79,7 +84,7 @@ public class ControlDeveloper {
 	}
 	
 	//Main funktion
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		//Aufgabe 1:
 		ControlDeveloper c1 = new ControlDeveloper();
 		System.out.println(c1.ControlDeveloper_Member); //Zugriff ueber Objekt(Instanz)
@@ -99,48 +104,30 @@ public class ControlDeveloper {
 			cl1.add(c1.commands[i]);
 		}
 		
-		System.out.println("Ausgabe der Liste");
-		cl1.printList();
-		System.out.println("MoveUp:");
-		cl1.moveUp(5);
-		cl1.printList();
-		System.out.println("MoveDown:");
-		cl1.moveDown(1);
-		cl1.printList();
-	
-		//Remove different Objects and check for errors
-		System.out.println("Remove Test 1:");
-		cl1.remove(7);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 2:");
-		cl1.remove(3);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 3:");
-		cl1.remove(3);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 4:");
-		cl1.remove(2);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 5:");
-		cl1.remove(1);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		System.out.println("Remove Test 6:");
-		cl1.remove(1);
-		cl1.printList();
-		System.out.println(cl1.getSize());
-		ControlModel cm1 = ControlModel.getModel();
-		System.out.println("Controllmodel Singeton erstellt");
-		cm1.start();
-		ControlModel cm2 = ControlModel.getModel();
-		if(cm2 == null) {
-			System.out.println("Instanz nicht angelegt");
+		Vector<ICommand> vectorList = new Vector<ICommand>();
+		vectorList.add(cl1.getCommand(1));
+		vectorList.add(cl1.getCommand(2));
+		vectorList.add(cl1.getCommand(3));
+		vectorList.add(cl1.getCommand(4));
+		vectorList.add(cl1.getCommand(5));
+		System.out.println(vectorList);
+		
+		File testfile = new File("C:\\Users\\Christian\\Desktop\\objects\\file.obj");
+		if(testfile.createNewFile()) 
+		{
+		    System.out.println("File created: " + testfile.getName());
+		    testfile.setWritable(true);
+		} 
+		else 
+		{
+		    System.out.println("File already exists.");
 		}
-
+		FileOutputStream fileOut = new FileOutputStream(testfile);
+	    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+	    objectOut.writeObject(vectorList);
+	    objectOut.close();
+	    
+		
 	}
 	
 
