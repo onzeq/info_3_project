@@ -8,7 +8,11 @@ package model;
 public class CommandType {
 
 	private String name;
+	//Static Constants to reduce errors due to name spelling
 	
+	public static final String DIRECTION = "Direction";
+	public static final String GEAR = "Gear";
+	public static final String PAUSE = "Pause";
 	//Constructor
 	public CommandType(String name) {
 		this.name = name;
