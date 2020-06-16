@@ -26,7 +26,7 @@ public class CommandType {
 		return this.name;
 	}
 	
-	//TODO
+	
 	/**
 	 * if called it creates one of the three commandtypes
 	 * @return
@@ -56,11 +56,10 @@ public class CommandType {
 		
 	}
 	
-	//TODO
+	
 	/**
 	 * returns name of command 
 	 */
-	//WHERES THE DIFFERENCE TO getName?
 	public String toString() {
 		return this.getName();
 	}

@@ -12,6 +12,7 @@ import hsrt.mec.controldeveloper.core.com.RoverHandler;
 
 public class ControlModel extends ControlModelRegistry implements IComListener{
 	public final static int NOROVERSELECTED = -1;
+	//Tet path for read and write Command Object file
 	private final String PATH = "C:\\Users\\Christian\\Desktop";
 	private static ControlModel cM;
 	private Rover selectedRover;
@@ -20,6 +21,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	/** TODO
 	 * wo werden CommandType und CommandList gesetzt (Konstruktor)?
 	 */
+	//3 Instances for 3 commands 
 	private CommandType[] cT = new CommandType[3];
 	private CommandList cL = new CommandList();
 	
@@ -38,7 +40,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 			 return ControlModel.cM;
 		 }
 		 else {
-			 System.out.println("Es gibt schon eine Instanz");
+			 System.out.println("ControlModel already exists");
 			 return null;
 		 }
 		 
@@ -54,7 +56,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		return cT;
 	}
 	
-	public void setAvailableRover()
+	public void setSelectedRover()
 	{
 		RoverHandler rH = new RoverHandler();
 		Rover[] freeRovers = rH.getFreeRover();
