@@ -1,6 +1,9 @@
 package model;
 import java.util.Vector;//for using the Vector class
-
+/**
+*	class that is a subject in the observer pattern
+* 	@author christian, jakob
+*/
 public class ControlModelRegistry {
 
 	private Vector<IControlModelListener> registry = new Vector<IControlModelListener>();
