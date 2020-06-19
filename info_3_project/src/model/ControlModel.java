@@ -1,5 +1,16 @@
 package model;
-
+/**
+ * Class part of observer pattern
+ * @author christian
+ *
+ * With next sheet:
+ * 	link with RoverHandler
+ * 	link with ComHanlder
+ * 	link with FileHandler
+ * 	fill commandperformed
+ * -->To now just build the casing of the code
+ * 
+ */
 import java.io.File;
 import java.util.Vector;
 
@@ -11,28 +22,24 @@ import hsrt.mec.controldeveloper.core.com.Rover;
 import hsrt.mec.controldeveloper.core.com.RoverHandler;
 
 public class ControlModel extends ControlModelRegistry implements IComListener{
+	
 	public final static int NOROVERSELECTED = -1;
-	//Tet path for read and write Command Object file
-	private final String PATH = "C:\\Users\\Christian\\Desktop";
+	private final String PATH = "";
 	private static ControlModel cM;
 	private Rover selectedRover;
-	
-	
-	/** TODO
-	 * wo werden CommandType und CommandList gesetzt (Konstruktor)?
-	 */
-	//3 Instances for 3 commands 
 	private CommandType[] cT = new CommandType[3];
 	private CommandList cL = new CommandList();
 	
 	
-	/** TODO
-	 * was muss in konsturktor nach singelton pattern ist konstruktor leer?!
+	/** 
+	 * Empty constructor
 	 */
 	private ControlModel(){}
 	
-	//Singleton
-	public static ControlModel getModel() //singelton verhindert das mehr als 1 object der klasse erzeugt werden kann
+	/**
+	 * method to return the ControlModel --> Singelton only allows one Control Model object to exist
+	 */
+	public static ControlModel getModel() 
 	{
 		 if (ControlModel.cM == null) 
 		 {
@@ -42,20 +49,28 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		 else {
 			 System.out.println("ControlModel already exists");
 			 return null;
-		 }
-		 
+		 }	 
 	}
 	
+	/**
+	 * return the commandlist
+	 */
 	public CommandList getCommandList()
 	{
 		return cL;
 	}
 	
+	/**
+	 *return the commandtypes
+	 */
 	public CommandType[] getCommandTypes()
 	{
 		return cT;
 	}
 	
+	/**
+	 * method to select first free rover
+	 */
 	public void setSelectedRover()
 	{
 		//RoverObject just for testing purpose/ no errors 
@@ -68,20 +83,17 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		}
 	}
 	
+	/**
+	 * return selected RoverId
+	 */
 	public String getSelectedRoverId()
 	{
 		return selectedRover.getRoverID();
 	}
 	
 	
-	/**TODO
-	 * Frage: Welcher ICommand Vector ?, reicht das so?, was soll passieren ohne return? 
-	 * warum wird auf file konsturktor hingewiesen wenn ganzes file und keine pfad übergeben wird?
-	 * was für ein Vector soll verwendet werden wenn in Objekt keiner angeben
-	 * was soll passieren?
-	 * 
-	 * --> einzelnen Commands in die Liste schreiben
-	 * --> File methode f.exists
+	/**
+	 * Method to Read/Write a CommandVectorFile --> implement in next excercise
 	 */
 	public void readCommands(File f) 
 	{
@@ -96,13 +108,8 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		oF.write(vC);
 	}
 	
-	/**TODO
-	 * was für bool soll returned werden
-	 * wie/über was starte/stoppe ich ausführung von Commandlist? -> in CommandList ist keine Methode vorhanden
-	 * 
-	 * --> über comhandler instance holen --> vektor der mit commands befüllt wird
-	 * 
-	 * --> ComHandler wie nutzen? Wann wird icommand vector eingeführt --> ComHandler als Instanz Variable?
+	/**
+	 * method to start running the commandList commands
 	 */
 	public boolean start()
 	{
@@ -110,6 +117,9 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		Vector<ICommand> vC = new Vector<ICommand>(); 
 		return cM.start(vC, selectedRover);
 	}
+	/**
+	 * method to stop the commandlist commands --> ComHandler gets implemented in next sheet
+	 */
 	public boolean stop()
 	{
 		ComHandler cM = null;
@@ -117,11 +127,8 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	}
 	
 	
-	/**TODO
-	 * reicht implement um ControlModel als IComLisstener Observer zu machen?
-	 * was soll in der Methode passieren?
-	 * 
-	 * --> Testfunktion
+	/**
+	 * method commandPerformed gives information about performed Commands --> next sheet
 	 */
 	public void commandPerformed(ICommand c, int comHandlerState)  //c ist ausgeführtes Commando; i ist ComHandler status  
 	{
