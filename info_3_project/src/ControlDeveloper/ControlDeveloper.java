@@ -85,19 +85,9 @@ public class ControlDeveloper {
 	
 	//Main funktion
 	public static void main(String[] args) throws IOException {
-		//Aufgabe 1:
 		ControlDeveloper c1 = new ControlDeveloper();
-		System.out.println(c1.ControlDeveloper_Member); //Zugriff ueber Objekt(Instanz)
-		System.out.println(ControlDeveloper.ControlDeveloper_Class); //Zugriff ueber Klasse selbst
-		
-		//Aufgabe 2/3:
-		System.out.println("Anzahl commands:" + Integer.toString(c1.MAXCOMMANDS));
 		c1.createCommands();
-		System.out.println("Ausgabe Commands:");
 		c1.printCommands();
-		
-		
-		//Aufgabe 4:
 		System.out.println("Befüllen der Liste");
 		CommandList cl1 = new CommandList();
 		for (int i = 0; i < c1.MAXCOMMANDS; i++) {
@@ -112,22 +102,35 @@ public class ControlDeveloper {
 		vectorList.add(cl1.getCommand(5));
 		System.out.println(vectorList);
 		
-		File testfile = new File("C:\\Users\\Christian\\Desktop\\objects\\file.obj");
-		if(testfile.createNewFile()) 
-		{
-		    System.out.println("File created: " + testfile.getName());
-		    testfile.setWritable(true);
-		} 
-		else 
-		{
-		    System.out.println("File already exists.");
+		File testfile = new File("C:\\Users\\Christian\\Desktop\\objects\\file.txt");
+		//Singelton erstellen:
+		ControlModel cM = ControlModel.getModel();
+		CommandList cL2 = cM.getCommandList();
+		for (int i = 0; i < c1.MAXCOMMANDS; i++) {
+			cL2.add(c1.commands[i]);
 		}
-		FileOutputStream fileOut = new FileOutputStream(testfile);
-	    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-	    objectOut.writeObject(vectorList);
-	    objectOut.close();
-	    
+		cM.writeCommands(testfile);
+		System.out.println("Cleared the list:");
+		cL2.clear();
+		int size = cL2.getSize();
+		for(int i = 1; i <= size; i++)
+		{
+			System.out.println(cL2.getCommand(i));
+		}
 		
+		cM.readCommands(testfile);
+		System.out.println("Filled the list:");
+		size = cL2.getSize();
+		for(int i = 1; i <= size; i++)
+		{
+			System.out.println(cL2.getCommand(i));
+		}
+		
+		
+		CommandType cT = new CommandType(CommandType.DIRECTION);
+		System.out.println(cT.getName());
+		Command Test = cT.createInstance();
+		System.out.println(Test);
 	}
 	
 

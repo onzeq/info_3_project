@@ -14,7 +14,7 @@ public class ControlModelRegistry {
 	/**
 	 * adds a new ControlModelListener to registry
 	 */
-	public void addControlModelListenerr(IControlModelListener c) {
+	public void addControlModelListener(IControlModelListener c) {
 		//calls add method for vectors
 		registry.add(c);
 	}
@@ -33,18 +33,17 @@ public class ControlModelRegistry {
 	 * Informs about certain message s Calls for every CML messageUpdated()
 	 * @param s Message String
 	 */
-	public void notifyMessageChange(String s) {
+	public void notifyMessageChange(String message) {
 		//all Listeners stored in the vector receive a message 
 		for(int i = 0; i< registry.size(); i++) {
 			
-			registry.get(i).messageUpdated(s);
+			registry.get(i).messageUpdated(message);
 		}
 			
 	}
 	
 	/**
 	 * Informs about new selected Rover, calls for all CMLs roverUpdated()
-	 * @param s 
 	 */
 	public void notifyRoverChanged() {
 		//all Listeners stored in the vector receive update

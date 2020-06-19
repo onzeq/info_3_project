@@ -1,4 +1,7 @@
 package model;
+
+import hsrt.mec.controldeveloper.core.com.command.ICommand;
+
 /**
  * adds a command at the end of the list
  * @author Christian
