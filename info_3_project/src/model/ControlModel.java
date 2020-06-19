@@ -58,6 +58,8 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	
 	public void setSelectedRover()
 	{
+		//RoverObject just for testing purpose/ no errors 
+		
 		RoverHandler rH = new RoverHandler();
 		Rover[] freeRovers = rH.getFreeRover();
 		if(freeRovers != null) //Wenn Liste von freien Rovern nicht leer ist wird erster freier ausgewählt
