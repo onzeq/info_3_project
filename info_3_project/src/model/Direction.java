@@ -57,4 +57,9 @@ public class Direction extends Command implements IDirection {
 		String config = "Name:  " + this.getName() +" "+  degree + " degree";
 		return config;
 	}
+	
+	public String toString()
+	{
+		return "Direction: degree: "+degree;
+	}
 }

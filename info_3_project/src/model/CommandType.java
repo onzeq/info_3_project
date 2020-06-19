@@ -35,17 +35,17 @@ public class CommandType {
 		//What does to call looks like? How does Method know, which case
 		
 		switch (this.name) {
-		case "Direction":
+		case DIRECTION:
 			Direction d = new Direction("Direction");
 			return d;
 			
 			
-		case "Gear":
+		case GEAR:
 			Gear g = new Gear("Gear");
 			return g;
 			
 		
-		case "Pause":
+		case PAUSE:
 			Pause p = new Pause("Pause");
 			return p;
 			

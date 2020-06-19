@@ -32,9 +32,15 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	
 	
 	/** 
-	 * Empty constructor
+	 * Consturctor fills Commandtype
 	 */
-	private ControlModel(){}
+	private ControlModel(){ //Übergabe für Testzwecke
+		
+		cT[0] = new CommandType(CommandType.DIRECTION);
+		cT[1] = new CommandType(CommandType.GEAR);
+		cT[2] = new CommandType(CommandType.PAUSE);
+			
+	}
 	
 	/**
 	 * method to return the ControlModel --> Singelton only allows one Control Model object to exist
@@ -95,15 +101,49 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 */
 	public void readCommands(File f) 
 	{
+		
 		Vector<ICommand> vC = new Vector<ICommand>();
 		ObjectFileHandler oF = new ObjectFileHandler(f); //Handler to read
+		
 		oF.read(vC);
+		if(vC.isEmpty())
+		{
+			System.out.println("Error, empty Vector");
+		}
+		else
+		{
+			cL.clear();
+			int size = vC.size();
+			for(int i = 0; i < size ; i++)
+			{
+				cL.add((Command) vC.get(i));
+			}
+			System.out.println("Read succesful!");
+		}
+		
+		
 	}
 	public void writeCommands(File f)
 	{
 		Vector<ICommand> vC = new Vector<ICommand>(); 
 		ObjectFileHandler oF = new ObjectFileHandler(f); //Handler to write
-		oF.write(vC);
+		
+		int size = cL.getSize();
+		for(int i = 1; i <= size; i++)
+		{
+			vC.add(cL.getCommand(i));
+			//System.out.println(vC.elementAt(i-1).getName());
+		}
+		
+		boolean check = oF.write(vC);
+		if(check == true)
+		{
+			System.out.println("Succesfully saved");
+		}
+		else
+		{
+			System.out.println("Error while saving");
+		}
 	}
 	
 	/**
@@ -111,8 +151,13 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 */
 	public boolean start()
 	{
-		ComHandler cM = null;
-		Vector<ICommand> vC = new Vector<ICommand>(); 
+		ComHandler cM = ComHandler.getInstance();
+		Vector<ICommand> vC = new Vector<ICommand>();
+		int size = cL.getSize();
+		for(int i = 1; i <= size; i++)
+		{
+			vC.add(cL.getCommand(i));
+		}
 		return cM.start(vC, selectedRover);
 	}
 	/**
@@ -120,7 +165,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 */
 	public boolean stop()
 	{
-		ComHandler cM = null;
+		ComHandler cM = ComHandler.getInstance();
 		return cM.stop();
 	}
 	
@@ -130,13 +175,30 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 */
 	public void commandPerformed(ICommand c, int comHandlerState)  //c ist ausgeführtes Commando; i ist ComHandler status  
 	{
-		if(c == null)
-		{
-			//kein Kommando ausgeführt
-		}
-		else
-		{
-			//Kommando c ausgeführt
+		switch (comHandlerState) {
+		case ComHandler.CONNECTION_ERROR:
+			System.out.println("Connection Error");
+			break;
+		case ComHandler.ROVER_FINISH_ICOMMAND:
+			System.out.println("Rover finished Command: " + c.getName());
+			break;
+		case ComHandler.ROVER_IS_USED:
+			System.out.println("Rover is used");
+			break;
+		case ComHandler.ROVER_NOT_SELECTED:
+			System.out.println("Rover not selected");
+			break;
+		case ComHandler.ROVER_RECEIVE_ICOMMAND:
+			System.out.println("Rover Receive Command: "+ c.getName());
+			break;
+		case ComHandler.ROVER_RUNNING_ICOMMAND:
+			System.out.println("Command executed: "+c.getName());
+			break;
+		case ComHandler.SEND_ICOMMAND:
+			System.out.println("Send Command to Rover: "+ c.getName());
+			break;
+		default:
+			break;
 		}
 	}
 	
