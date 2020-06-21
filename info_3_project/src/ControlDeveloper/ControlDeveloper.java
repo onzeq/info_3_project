@@ -1,5 +1,7 @@
 package ControlDeveloper;
 import model.*;
+import view.ControlUI;
+import view.PanelCommandTypes;
 import hsrt.mec.controldeveloper.core.com.command.ICommand;
 
 import java.io.File;
@@ -85,7 +87,7 @@ public class ControlDeveloper {
 	
 	//Main funktion
 	public static void main(String[] args) throws IOException {
-		ControlDeveloper c1 = new ControlDeveloper();
+		/*ControlDeveloper c1 = new ControlDeveloper();
 		c1.createCommands();
 		c1.printCommands();
 		System.out.println("Befüllen der Liste");
@@ -130,7 +132,11 @@ public class ControlDeveloper {
 		CommandType cT = new CommandType(CommandType.DIRECTION);
 		System.out.println(cT.getName());
 		Command Test = cT.createInstance();
-		System.out.println(Test);
+		System.out.println(Test);*/
+		ControlModel cM = cM.getModel();
+		ControlUI cUI = new ControlUI();
+		PanelCommandTypes view = new PanelCommandTypes(cM, cUI);
+		view.setView
 	}
 	
 

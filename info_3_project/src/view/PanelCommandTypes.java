@@ -1,5 +1,11 @@
 package view;
 import javax.swing.JList;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+
 import javax.swing.JButton;
 import model.CommandType;
 import javax.swing.JPanel;
@@ -8,8 +14,8 @@ import model.ControlModel;
 public class PanelCommandTypes extends JPanel {
 	private JList<CommandType> commandTypeList = new JList<CommandType>();
 	private JButton bAdd = new JButton("Add");
-	
 	ControlModel cM;
+	
 	public PanelCommandTypes(ControlModel cM, ControlUI cui) {
 		this.cM = cM;
 		
@@ -17,6 +23,7 @@ public class PanelCommandTypes extends JPanel {
 	
 	private void setView() {
 		//adds graphical components to the panel itself
+		
 		this.add(bAdd);
 		this.add(commandTypeList);
 		
@@ -24,7 +31,20 @@ public class PanelCommandTypes extends JPanel {
 	
 	private void setController() {
 		//ButtonListener and ListListener
+		bAdd.addActionListener( new ActionListener() {
+			public void actionPerformed(ActionEvent anEvent) 
+			{
+				
+			}
+		});
+		//--> was für ein Listener für commandTypeList
 		
+		//commandTypeList.addContainerListener( new ContainerListener(){
+			//public void actionPerformed(ContainerEvent anEvent)
+			//{
+				
+			//}
+		//});
 	}
 
 }
