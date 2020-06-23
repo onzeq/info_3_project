@@ -32,12 +32,20 @@ public class PanelCommandModel extends AbstractTableModel{
 	
 	public String getColumnName(int col)
 	{
-		return cL.getCommand(col).getName();
+		if(col > 2 || col < 0)
+		{
+			System.out.println("Out of Range!");
+			return null;
+		}
+		else
+		{
+			return columnNames[col];
+		}
+		
 	}
 	
 	public String[] getColumnNames()
 	{
-		
 		return columnNames; 
 	}
 

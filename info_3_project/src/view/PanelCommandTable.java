@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import model.Command;
 import model.ControlModel;
@@ -21,10 +23,13 @@ public class PanelCommandTable extends JPanel {
 	private JLabel JRover;
 	private JTable ICommands;
 	private ListSelectionModel LSM;
+	ControlUI cUI = null;
+	ControlModel cM = null;
 	
-	public PanelCommandTable(ControlModel cM, ControlUI cUI)
+	public PanelCommandTable(ControlModel cm, ControlUI cui)
 	{
-		
+		cUI = cui;
+		cM = cm;
 	}
 	
 	private void setView()
@@ -43,31 +48,32 @@ public class PanelCommandTable extends JPanel {
 		bRemove.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				//remove a command
+				cM.getCommandList().remove(ICommands.getSelectedRow());
+				//update --> configview / tableview
 			}
 		});
 		bUp.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				//move up a command
+				cM.getCommandList().moveUp(ICommands.getSelectedRow());
 			}
 		});
 		bDown.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				//move down a command
+				cM.getCommandList().moveDown(ICommands.getSelectedRow());
 			}
 		});
 		bStart.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				//start running
+				cM.start();
 			}
 		});
 		bStop.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				//stop running
+				cM.stop();
 			}
 		});
 		
@@ -75,11 +81,11 @@ public class PanelCommandTable extends JPanel {
 	
 	public void updateTable(Command c)
 	{
-		//fireTabelDatachanged???
+		
 	}
 	
 	public void updateSelectedRover()
 	{
-		//JRover Label aktulatiseren
+		JRover.setName("Rover: " + cM.getSelectedRoverId());
 	}
 }
