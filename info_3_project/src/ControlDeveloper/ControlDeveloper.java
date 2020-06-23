@@ -133,10 +133,10 @@ public class ControlDeveloper {
 		System.out.println(cT.getName());
 		Command Test = cT.createInstance();
 		System.out.println(Test);*/
-		ControlModel cM = cM.getModel();
-		ControlUI cUI = new ControlUI();
-		PanelCommandTypes view = new PanelCommandTypes(cM, cUI);
-		view.setView
+		//ControlModel cM = cM.getModel();
+		//ControlUI cUI = new ControlUI();
+		//PanelCommandTypes view = new PanelCommandTypes(cM, cUI);
+		//view.setView
 	}
 	
 

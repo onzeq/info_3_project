@@ -2,11 +2,11 @@ package view;
 import javax.swing.table.AbstractTableModel;
 
 import model.CommandList;
-public class PanelCommandModel extends AbstractTableModel{
+public class TableCommandModel extends AbstractTableModel{
 	private static String[] columnNames = {"No.", "Command", "Configuration"};
 	CommandList cL;
 	
-	public PanelCommandModel (CommandList commandList)
+	public TableCommandModel (CommandList commandList)
 	{
 		cL = commandList;
 		

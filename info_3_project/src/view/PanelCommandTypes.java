@@ -28,6 +28,8 @@ public class PanelCommandTypes extends JPanel {
 		this.cM = cM;
 		cUI = cui;
 		commandTypeList.setListData(cM.getCommandTypes());	
+		this.setView();
+		this.setController();
 	}
 	private void setView() {
 		//adds graphical components to the panel itself
@@ -48,6 +50,7 @@ public class PanelCommandTypes extends JPanel {
 				else
 				{
 					cM.getCommandList().add(selectedCT.createInstance());
+					System.out.println("Hier sind wir");
 				}
 			}
 		});
