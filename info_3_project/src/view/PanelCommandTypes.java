@@ -9,6 +9,9 @@ import java.awt.event.ContainerListener;
 import javax.swing.JButton;
 import model.CommandType;
 import javax.swing.JPanel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import model.ControlModel;
 @SuppressWarnings("serial")
 public class PanelCommandTypes extends JPanel {
@@ -37,14 +40,18 @@ public class PanelCommandTypes extends JPanel {
 				
 			}
 		});
+		
+		
 		//--> was für ein Listener für commandTypeList
 		
-		//commandTypeList.addContainerListener( new ContainerListener(){
-			//public void actionPerformed(ContainerEvent anEvent)
-			//{
-				
-			//}
-		//});
+		commandTypeList.addListSelectionListener( new ListSelectionListener(){
+			public void valueChanged(ListSelectionEvent e)
+			{
+				//If cell is selected 
+				if (!e.getValueIsAdjusting()) 
+			          commandTypeList.getSelectedValue();
+			}
+		});
 	}
 
 }
