@@ -87,6 +87,21 @@ public class ControlDeveloper {
 	
 	//Main funktion
 	public static void main(String[] args) throws IOException {
+		ControlDeveloper c1 = new ControlDeveloper();
+		c1.createCommands();
+		c1.printCommands();
+		System.out.println("Befüllen der Liste");
+		CommandList cl1 = new CommandList();
+		for (int i = 0; i < c1.MAXCOMMANDS; i++) {
+			cl1.add(c1.commands[i]);
+			System.out.println(i);
+		}
+		System.out.println(cl1.getCommand(0).getConfig());
+		cl1.printList();
+		
+		System.out.println("Nach verschieben");
+		cl1.remove(4);
+		cl1.printList();
 		/*ControlDeveloper c1 = new ControlDeveloper();
 		c1.createCommands();
 		c1.printCommands();

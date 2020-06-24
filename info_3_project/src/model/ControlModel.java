@@ -131,7 +131,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		ObjectFileHandler oF = new ObjectFileHandler(f); //Handler to write
 		
 		int size = cL.getSize();
-		for(int i = 1; i <= size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			vC.add(cL.getCommand(i));
 			//System.out.println(vC.elementAt(i-1).getName());
@@ -156,7 +156,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		ComHandler cM = ComHandler.getInstance();
 		Vector<ICommand> vC = new Vector<ICommand>();
 		int size = cL.getSize();
-		for(int i = 1; i <= size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			vC.add(cL.getCommand(i));
 		}
