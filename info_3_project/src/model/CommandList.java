@@ -190,7 +190,9 @@ public class CommandList {
 				enext1.setPrev(eprev);
 			}
 			else {
-				enext1.setPrev(null);
+				
+				this.root = enext1;
+				enext1.setNext(emov);
 				
 				
 			}
