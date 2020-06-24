@@ -221,7 +221,7 @@ public class CommandList {
 	 */
 	public Command moveDown(int pos) {
 		//check if out of range or already first element
-		if(pos > this.getSize() || pos <= 1) 
+		if(pos > this.getSize() || pos < 1) 
 		{
 			System.out.println("Operation nicht moeglich");
 			return null;
@@ -241,14 +241,18 @@ public class CommandList {
 			}
 			else //if start of the list, root is needed
 			{
-				this.root.setNext(emov);
-				emov.setPrev(this.root);
+				this.root = emov;
 			}
 			
 			
 			eprev1.setNext(enext);
 			eprev1.setPrev(emov);
 			emov.setNext(eprev1);
+			//set prev if not at the end of the list
+			if(enext != null) {
+				enext.setPrev(eprev1);
+			}
+			
 			
 			//return the moved Element
 			return emov.getElement();

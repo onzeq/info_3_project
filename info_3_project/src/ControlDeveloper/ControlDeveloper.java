@@ -100,7 +100,7 @@ public class ControlDeveloper {
 		cl1.printList();
 		
 		System.out.println("Nach verschieben");
-		cl1.moveUp(0);
+		cl1.moveDown(4);
 		cl1.printList();
 		/*
 		Vector<ICommand> vectorList = new Vector<ICommand>();
