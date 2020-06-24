@@ -36,9 +36,8 @@ public class CommandList {
 		
 		command.setNext(null);
 		//List is empty
-		if (root.getNext() == null) {
-			command.setPrev(null);
-			root.setNext(command);
+		if (root.getElement() == null) {
+			root = command;
 			this.size++;
 			return c;
 		}
@@ -60,8 +59,12 @@ public class CommandList {
 	//help method for debugging 
 	public void printList() {
 		//Root itself is null, start at next element
-		Element current = root.getNext();
+		Element current = root;
 		//as long as there is one more next element, print its config 
+		if(root == null) {
+			System.out.println("Liste ist leer");
+			return;
+		}
 		while(current != null) {
 			System.out.println(current.getElement().getConfig());
 			//current gets the content of the next element(iterates through)
@@ -76,7 +79,7 @@ public class CommandList {
  	*/
 	public void clear() {
 		//Content no longer accessable --> cleared or Memoery Leaks? Does the garbage collector the rest?
-		root.setNext(null);	
+		root= null;	
 		size = 0;
 	}
 	
@@ -89,7 +92,7 @@ public class CommandList {
 	 * @return
 	 */
 	public Command getCommand(int pos) {
-		if(pos <= size) //Checking for valid position 
+		if(pos <size) //Checking for valid position 
 		{
 			return getElement(pos).getElement();
 		}
@@ -109,7 +112,7 @@ public class CommandList {
 	 * @return
 	 */
 	private Element getElement(int pos) {
-		if(pos <= size) //is pos in the list?
+		if(pos < size) //is pos in the list?
 		{
 			//go to pos and return the Element
 			Element temp = root;
@@ -167,7 +170,7 @@ public class CommandList {
 	 */
 	public Command moveUp(int pos) {
 		//If element already at top or value is negative, operation not possible
-		if(pos > size-1 || pos < 0) 
+		if(pos > size-2 || pos < 0) //start counting at 0, therefor size-1 means itss already at top
 		{
 			System.out.println("Operation nicht moeglich");
 			return null;
@@ -187,8 +190,9 @@ public class CommandList {
 				enext1.setPrev(eprev);
 			}
 			else {
-				this.root.setNext(enext1);
-				enext1.setPrev(this.root);
+				enext1.setPrev(null);
+				
+				
 			}
 			//catch error if in the end of the list
 			if(enext2 != null)//somewhere in the middle of the list
