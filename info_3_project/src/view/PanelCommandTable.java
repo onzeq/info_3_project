@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Command;
 import model.ControlModel;
 
+@SuppressWarnings("serial")
 public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	private JButton bRemove;
 	private JButton bUp;
@@ -27,10 +28,18 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	ControlUI cUI = null;
 	ControlModel cM = null;
 	
+	/**
+	 * Constructor sets all components needed
+	 * @param cm controlmodel needed to have access to model 
+	 * @param cui Userinterface so its known in the panel
+	 */
 	public PanelCommandTable(ControlModel cm, ControlUI cui)
 	{
 		cUI = cui;
 		cM = cm;
+		this.setView();
+		this.setController();
+		this.setVisible(true);
 		
 	}
 	
@@ -81,12 +90,17 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		
 	}
 	
+	/**
+	 * 
+	 * @param c
+	 */
 	public void updateTable(Command c)
 	{
 		DefaultTableModel test = (DefaultTableModel) tCommands.getModel();
 		test.fireTableDataChanged();
 		//LSM.setSelectionInterval();
 	}
+	
 	
 	public void updateSelectedRover()
 	{

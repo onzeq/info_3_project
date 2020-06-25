@@ -15,3 +15,7 @@ wie soll button ohne command update funktion aufrufen bzw. was soll save button 
 PanelConfigs wie übereinanderlegen bzw. wie aufrufen
 
 Rover selektieren durch Liste oder nächsten freien rover nehmen
+
+fireTabledataChanged wie wird es verwendet
+
+valueChanged implementieren

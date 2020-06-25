@@ -16,8 +16,13 @@ import model.ControlModel;
 import model.IControlModelListener;
 
 public class ControlUI extends JFrame  implements IControlModelListener{
+	//four different panels for different content in commands + default panel if no command is selected
 	private static final PanelCommandConfig[] panelConfigs = new PanelCommandConfig[4];
+	
+	//attribute for message area in the bottom of the UI 
 	private JTextArea messageArea = new JTextArea();
+	
+	//MenuBar attribute with several items in it
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu mFile = new JMenu();
 	private JMenuItem mIOpen = new JMenuItem();
@@ -26,20 +31,27 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private JMenuItem mIExit = new JMenuItem();
 	private JMenu mHelp = new JMenu();;
 	private JMenuItem mIAbout = new JMenuItem();
+	
+	//constants to choose right commandConfigPanel
 	public static final int CONFIGDEFAULT = 0;
 	public static final int CONFIGDIRECTION = 1;
 	public static final int CONFIGGEAR = 2;
 	public static final int CONFIGPAUSE = 3;
 	
+	//all the panels in the UI
 	private PanelCommandTypes pcTypes = null;
 	private PanelCommandTable pcTable = null;
 	private PanelConfigDefault pcDefault= null;
 	private PanelConfigDirection pcDirection= null;
 	private PanelConfigGear pcGear= null;
 	private PanelConfigPause pcPause= null;
+	
+	//controlModel Attribut needed for access in Model 
 	private ControlModel cM = ControlModel.getModel();
 	
-	//Constructor just for testing 
+	/**
+	 * Constructor creates Instances of the panels and sets everything needed to see the GUI window
+	 */
 	public ControlUI() {
 		pcTypes = new PanelCommandTypes(cM, this);
 		pcTable = new PanelCommandTable(cM, this);
@@ -53,6 +65,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		
 	}
 	
+	/**
+	 * integrates all tables panels buttons and menubar in the window
+	*/
 	private void setView()
 	{
 		this.add(messageArea);
@@ -62,6 +77,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		this.add(pcDefault);
 	}
 	
+	/**
+	 * integrates all compnents of the menubar in the window
+	 */
 	private void setMenubar()
 	{
 		mFile.add(mIOpen);
@@ -72,6 +90,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		mHelp.add(mIAbout);
 		menuBar.add(mHelp);
 	}
+	
 	
 	private void setController()
 	{
@@ -119,10 +138,19 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		});
 	}
 	
+	/**
+	 * refreshes the view after changes
+	 * @param c command needed to execute nested method updateTable
+	 */
 	public void updateTableView(Command c)
 	{
 		pcTable.updateTable(c);
 	}
+	
+	/**
+	 * updates the command Config view for the selected command
+	 * @param c command needed to select right panel
+	 */
 	
 	public void updateConfigView(Command c)
 	{
@@ -146,12 +174,18 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	}
 	
 	@Override
-	public void messageUpdated(String s) {
-		messageArea.setText(s);
+	/**
+	 * implements method from Interface IControlModelListener and shows the text in the textfield
+	 */
+	public void messageUpdated(String message) {
+		messageArea.setText(message);
 		
 	}
 
 	@Override
+	/**
+	 * invoke Method fr update the rover and shows the Information about the rover in the messagepanel
+	 */
 	public void roverUpdated() {
 		pcTable.updateSelectedRover();
 		messageArea.setText("Rover updated:" + pcTable.cM.getSelectedRoverId());
