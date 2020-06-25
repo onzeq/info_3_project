@@ -54,7 +54,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		 }
 		 else {
 			 System.out.println("ControlModel already exists");
-			 return null;
+			 return cM;
 		 }	 
 	}
 	

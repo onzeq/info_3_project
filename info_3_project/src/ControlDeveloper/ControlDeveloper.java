@@ -152,6 +152,9 @@ public class ControlDeveloper {
 		//ControlUI cUI = new ControlUI();
 		//PanelCommandTypes view = new PanelCommandTypes(cM, cUI);
 		//view.setView
+		
+		ControlUI ui = new ControlUI();
+		ui.setVisible(true);
 	}
 	
 

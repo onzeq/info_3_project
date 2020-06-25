@@ -3,3 +3,15 @@ Aufgabe 1c)
 	
 Aufgabe 2c) 
 	immer nach actions updaten
+	
+Allgemein: Wie kommt command in control ui
+
+Werte vor der Änderung in TextFelder übernehmen
+
+Verknüpfung von PanelCommandTable zu den Configs und update
+
+wie soll button ohne command update funktion aufrufen bzw. was soll save button machen?
+
+PanelConfigs wie übereinanderlegen bzw. wie aufrufen
+
+Rover selektieren durch Liste oder nächsten freien rover nehmen
