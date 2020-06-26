@@ -1,17 +1,23 @@
 package view;
 
 import java.awt.BorderLayout;
+import javafx.stage.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.FileChooserUI;
 
 import model.Command;
 import model.ControlModel;
@@ -33,6 +39,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private JMenuItem mIExit = new JMenuItem("Exit");
 	private JMenu mHelp = new JMenu("Help");;
 	private JMenuItem mIAbout = new JMenuItem("About");
+	private JLabel lAbout = new JLabel("Das ist der About-Bereich von Jakob und Christians Programm!");
+	private JDialog dAbout = new JDialog();
 	
 	//constants to choose right commandConfigPanel
 	public static final int CONFIGDEFAULT 	= 0;
@@ -47,6 +55,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private PanelConfigDirection pcDirection= null;
 	private PanelConfigGear pcGear= null;
 	private PanelConfigPause pcPause= null;
+	
+	//path that opens file
+	private String path;
 	
 	//controlModel Attribut needed for access in Model 
 	private ControlModel cM = ControlModel.getModel();
@@ -70,16 +81,20 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		super.setJMenuBar(menuBar);
-		
-		
+		//no user input in textarea
+		messageArea.setEditable(false);
 	    
-	  
+		//this.setSize(arg0, arg1);
+		
+		//About Dialog unsichtbar machen
+		dAbout.setVisible(false);
+		dAbout.add(lAbout);
+		
 	    this.add( pcTypes, BorderLayout.WEST );    
 	    this.add(pcTable, BorderLayout.CENTER );    
 	    this.add(messageArea, BorderLayout.SOUTH );    
 	    this.add( pcDefault, BorderLayout.EAST);    
 	    
-	  
 	    this.pack();
 	   
 	}
@@ -113,16 +128,15 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	
 	private void setController()
 	{
-		mFile.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent anEvent) 
-			{
-				
-			}
-		});
 		mIOpen.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				
+				JFileChooser fileChooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				        ".txt Documents only", "txt");
+				fileChooser.setFileFilter(filter);
+				JDialog dFileChooser = new JDialog();
+				JDialog.add(fileChooser.d);
 			}
 		});
 		mISave.addActionListener( new ActionListener() {
@@ -134,29 +148,25 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		mIRover.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				
+				cM.setSelectedRover();
+				cM.notifyRoverChanged();
+				messageArea.setText("New Rover selected");
 			}
 		});
 		mIExit.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				
-			}
-		});
-		mHelp.addActionListener( new ActionListener() {
-			public void actionPerformed(ActionEvent anEvent) 
-			{
-				
+				dispose();
 			}
 		});
 		mIAbout.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				
+				dAbout.setVisible(true);
 			}
 		});
 	}
-	
+
 	/**
 	 * refreshes the view after changes
 	 * @param c command needed to execute nested method updateTable
