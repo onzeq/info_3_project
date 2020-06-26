@@ -5,6 +5,7 @@ import javafx.stage.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -34,7 +35,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu mFile = new JMenu("File");
 	private JMenuItem mIOpen = new JMenuItem("Open");
-	private JMenuItem mISave = new JMenuItem("Safe");
+	private JMenuItem mISave = new JMenuItem("Save");
 	private JMenuItem mIRover = new JMenuItem("Rover");
 	private JMenuItem mIExit = new JMenuItem("Exit");
 	private JMenu mHelp = new JMenu("Help");;
@@ -56,8 +57,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private PanelConfigGear pcGear= null;
 	private PanelConfigPause pcPause= null;
 	
-	//path that opens file
-	private String path;
+	//file that is worked on
+	private File workFile = null;
 	
 	//controlModel Attribut needed for access in Model 
 	private ControlModel cM = ControlModel.getModel();
@@ -131,17 +132,49 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		mIOpen.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				
 				JFileChooser fileChooser = new JFileChooser();
+				
 				FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				        ".txt Documents only", "txt");
 				fileChooser.setFileFilter(filter);
+				fileChooser.setDialogTitle("Explorer");
 				JDialog dFileChooser = new JDialog();
-				JDialog.add(fileChooser.d);
+				int result = fileChooser.showOpenDialog(dFileChooser);
+				dFileChooser.setVisible(true);
+				
+				if (result == JFileChooser.APPROVE_OPTION) {
+					workFile = fileChooser.getSelectedFile();
+					cM.readCommands(workFile);
+					dFileChooser.dispose();
+					
+				} else if (result == JFileChooser.CANCEL_OPTION) {
+				    System.out.println("Cancel was selected");
+				    dFileChooser.dispose();
+				}
 			}
 		});
 		mISave.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				JFileChooser fileChooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(
+				        ".txt Documents only", "txt");
+				fileChooser.setFileFilter(filter);
+				fileChooser.setDialogTitle("Explorer");
+				JDialog dFileChooser = new JDialog();
+				int result = fileChooser.showOpenDialog(dFileChooser);
+				dFileChooser.setVisible(true);
+				
+				if (result == JFileChooser.APPROVE_OPTION) {
+					workFile = fileChooser.getSelectedFile();
+					cM.writeCommands(workFile);
+					dFileChooser.dispose();
+					
+				} else if (result == JFileChooser.CANCEL_OPTION) {
+				    System.out.println("Cancel was selected");
+				    dFileChooser.dispose();
+				}
 				
 			}
 		});
