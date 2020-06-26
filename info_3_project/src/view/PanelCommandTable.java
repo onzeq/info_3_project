@@ -40,7 +40,8 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		controlUI = cui;
 		cM = cm;
 		tcM = new TableCommandModel(cM.getCommandList());
-		tCommands = new JTable(tcM);
+		tCommands = new JTable();
+		tCommands.setModel(tcM);
 		this.setView();
 		this.setController();
 		this.setVisible(true);
