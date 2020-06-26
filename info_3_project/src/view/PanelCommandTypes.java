@@ -7,6 +7,7 @@ import java.awt.event.ContainerEvent;
 import java.awt.event.ContainerListener;
 import java.util.Vector;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -27,15 +28,16 @@ public class PanelCommandTypes extends JPanel {
 	public PanelCommandTypes(ControlModel cM, ControlUI cui) {
 		this.cM = cM;
 		cUI = cui;
-		commandTypeList.setListData(cM.getCommandTypes());	
+		commandTypeList.setListData(cM.getCommandTypes());
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setView();
 		this.setController();
+		this.setVisible(true);
 	}
 	private void setView() {
 		//adds graphical components to the panel itself
-		
-		this.add(bAdd);
 		this.add(commandTypeList);
+		this.add(bAdd);
 	}
 	
 	private void setController() {

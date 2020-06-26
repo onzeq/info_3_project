@@ -2,6 +2,7 @@ package view;
 import javax.swing.table.AbstractTableModel;
 
 import model.CommandList;
+@SuppressWarnings("serial")
 public class TableCommandModel extends AbstractTableModel{
 	private static String[] columnNames = {"No.", "Command", "Configuration"};
 	CommandList cL;

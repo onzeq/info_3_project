@@ -1,9 +1,11 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -24,19 +26,19 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	
 	//MenuBar attribute with several items in it
 	private JMenuBar menuBar = new JMenuBar();
-	private JMenu mFile = new JMenu();
-	private JMenuItem mIOpen = new JMenuItem();
-	private JMenuItem mISave = new JMenuItem();
-	private JMenuItem mIRover = new JMenuItem();
-	private JMenuItem mIExit = new JMenuItem();
-	private JMenu mHelp = new JMenu();;
-	private JMenuItem mIAbout = new JMenuItem();
+	private JMenu mFile = new JMenu("File");
+	private JMenuItem mIOpen = new JMenuItem("Open");
+	private JMenuItem mISave = new JMenuItem("Safe");
+	private JMenuItem mIRover = new JMenuItem("Rover");
+	private JMenuItem mIExit = new JMenuItem("Exit");
+	private JMenu mHelp = new JMenu("Help");;
+	private JMenuItem mIAbout = new JMenuItem("About");
 	
 	//constants to choose right commandConfigPanel
-	public static final int CONFIGDEFAULT = 0;
+	public static final int CONFIGDEFAULT 	= 0;
 	public static final int CONFIGDIRECTION = 1;
-	public static final int CONFIGGEAR = 2;
-	public static final int CONFIGPAUSE = 3;
+	public static final int CONFIGGEAR 		= 2;
+	public static final int CONFIGPAUSE 	= 3;
 	
 	//all the panels in the UI
 	private PanelCommandTypes pcTypes = null;
@@ -53,6 +55,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 * Constructor creates Instances of the panels and sets everything needed to see the GUI window
 	 */
 	public ControlUI() {
+		super("Control Developer");
+		this.setLayout( new BorderLayout() );
+		
 		pcTypes = new PanelCommandTypes(cM, this);
 		pcTable = new PanelCommandTable(cM, this);
 		pcDefault = new PanelConfigDefault();
@@ -62,7 +67,21 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		this.setMenubar();
 		this.setView();
 		this.setController();
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		super.setJMenuBar(menuBar);
 		
+		
+	    
+	  
+	    this.add( pcTypes, BorderLayout.WEST );    
+	    this.add(pcTable, BorderLayout.CENTER );    
+	    this.add(messageArea, BorderLayout.SOUTH );    
+	    this.add( pcDefault, BorderLayout.EAST);    
+	    
+	  
+	    this.pack();
+	   
 	}
 	
 	/**
@@ -192,5 +211,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		
 	}
 	
+	public static void main(String[] argv) {
+		new ControlUI();
+	}
 	
 }
+

@@ -10,6 +10,7 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 import model.Command;
@@ -17,16 +18,17 @@ import model.ControlModel;
 
 @SuppressWarnings("serial")
 public class PanelCommandTable extends JPanel implements ListSelectionListener{
-	private JButton bRemove;
-	private JButton bUp;
-	private JButton bDown;
-	private JButton bStart;
-	private JButton bStop;
-	private JLabel JRover;
-	private JTable tCommands;
-	private ListSelectionModel LSM;
-	ControlUI cUI = null;
+	private JButton bRemove = new JButton("Remove");
+	private JButton bUp =   new JButton("Up");
+	private JButton bDown = new JButton("Down");
+	private JButton bStart= new JButton("Start");
+	private JButton bStop = new JButton("Stop");
+	private JLabel JRover = new JLabel("Rover: ");
+	private JTable tCommands = null;
+	private ListSelectionModel listSelectionModel;
+	ControlUI controlUI = null;
 	ControlModel cM = null;
+	TableCommandModel tcM = null;
 	
 	/**
 	 * Constructor sets all components needed
@@ -35,11 +37,15 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	 */
 	public PanelCommandTable(ControlModel cm, ControlUI cui)
 	{
-		cUI = cui;
+		controlUI = cui;
 		cM = cm;
+		tcM = new TableCommandModel(cM.getCommandList());
+		tCommands = new JTable(tcM);
 		this.setView();
 		this.setController();
 		this.setVisible(true);
+		
+		
 		
 	}
 	
@@ -88,7 +94,11 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 			}
 		});
 		
+		
+		
 	}
+	
+	
 	
 	/**
 	 * 
@@ -96,8 +106,8 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	 */
 	public void updateTable(Command c)
 	{
-		DefaultTableModel test = (DefaultTableModel) tCommands.getModel();
-		test.fireTableDataChanged();
+		
+		tcM.fireTableDataChanged();
 		//LSM.setSelectionInterval();
 	}
 	
