@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
-import javafx.stage.*;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +24,7 @@ import model.Command;
 import model.ControlModel;
 import model.IControlModelListener;
 
+@SuppressWarnings("serial")
 public class ControlUI extends JFrame  implements IControlModelListener{
 	//four different panels for different content in commands + default panel if no command is selected
 	private static final PanelCommandConfig[] panelConfigs = new PanelCommandConfig[4];

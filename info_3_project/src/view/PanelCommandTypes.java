@@ -52,7 +52,9 @@ public class PanelCommandTypes extends JPanel {
 				else
 				{
 					cM.getCommandList().add(selectedCT.createInstance());
+					
 					System.out.println("Hier sind wir");
+					
 				}
 			}
 		});

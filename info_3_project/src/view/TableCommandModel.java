@@ -4,31 +4,31 @@ import javax.swing.table.AbstractTableModel;
 import model.CommandList;
 @SuppressWarnings("serial")
 public class TableCommandModel extends AbstractTableModel{
-	private static String[] columnNames = {"No.", "Command", "Configuration"};
-	CommandList cL;
+	private static final String[] COLUMNNAMES = {"No.", "Command", "Configuration"};
+	CommandList commandList;
 	
 	public TableCommandModel (CommandList commandList)
 	{
-		cL = commandList;
+		this.commandList = commandList;
 		
 	}
 	@Override
 	public int getColumnCount() {
 		// Returns 3 because of column no. / name / config
-		return 3;
+		return COLUMNNAMES.length;
 	}
 
 	@Override
 	public int getRowCount() {
 		//returns count of Elements in commandList
-		return cL.getSize();
+		return commandList.getSize();
 	}
 
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		//implement for giving back the object in a specific row
 		
-		return cL.getCommand(arg0);
+		return commandList.getCommand(arg0);
 	}
 	
 	public String getColumnName(int col)
@@ -40,14 +40,14 @@ public class TableCommandModel extends AbstractTableModel{
 		}
 		else
 		{
-			return columnNames[col];
+			return COLUMNNAMES[col];
 		}
 		
 	}
 	
 	public String[] getColumnNames()
 	{
-		return columnNames; 
+		return COLUMNNAMES; 
 	}
 
 }
