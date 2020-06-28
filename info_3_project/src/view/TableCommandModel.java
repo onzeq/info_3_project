@@ -2,9 +2,11 @@ package view;
 import javax.swing.table.AbstractTableModel;
 
 import model.CommandList;
+
+
 @SuppressWarnings("serial")
 public class TableCommandModel extends AbstractTableModel{
-	private static final String[] COLUMNNAMES = {"No.", "Command", "Configuration"};
+	static final String[] COLUMNNAMES = {"No.", "Command", "Configuration"};
 	CommandList commandList;
 	
 	public TableCommandModel (CommandList commandList)
@@ -31,17 +33,12 @@ public class TableCommandModel extends AbstractTableModel{
 		return commandList.getCommand(arg0);
 	}
 	
+
+	@Override
 	public String getColumnName(int col)
 	{
-		if(col > 2 || col < 0)
-		{
-			System.out.println("Out of Range!");
-			return null;
-		}
-		else
-		{
-			return COLUMNNAMES[col];
-		}
+		return COLUMNNAMES[col];
+		
 		
 	}
 	

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,11 +26,11 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	private JButton bStart= new JButton("Start");
 	private JButton bStop = new JButton("Stop");
 	private JLabel JRover = new JLabel("Rover: ");
-	private JTable tCommands = null;
+	private JTable tCommands = new JTable();
 	private ListSelectionModel listSelectionModel;
 	ControlUI controlUI = null;
-	ControlModel cM = null;
-	TableCommandModel tcM = null;
+	ControlModel controlModel = null;
+	TableCommandModel tableCommandModel = null;
 	
 	/**
 	 * Constructor sets all components needed
@@ -39,11 +40,12 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	public PanelCommandTable(ControlModel cm, ControlUI cui)
 	{
 		controlUI = cui;
-		cM = cm;
+		controlModel = cm;
 		
-		tcM = new TableCommandModel(cM.getCommandList());
-		tCommands = new JTable();
-		tCommands.setModel(tcM);
+		tableCommandModel = new TableCommandModel(controlModel.getCommandList());
+		
+		tCommands.setModel(tableCommandModel);
+	
 		this.setView();
 		this.setController();
 		this.setVisible(true);
@@ -68,32 +70,33 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		bRemove.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				cM.getCommandList().remove(tCommands.getSelectedRow());
+				controlModel.getCommandList().remove(tCommands.getSelectedRow());
 				//update --> configview / tableview
+				
 			}
 		});
 		bUp.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				cM.getCommandList().moveUp(tCommands.getSelectedRow());
+				controlModel.getCommandList().moveUp(tCommands.getSelectedRow());
 			}
 		});
 		bDown.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				cM.getCommandList().moveDown(tCommands.getSelectedRow());
+				controlModel.getCommandList().moveDown(tCommands.getSelectedRow());
 			}
 		});
 		bStart.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				cM.start();
+				controlModel.start();
 			}
 		});
 		bStop.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				cM.stop();
+				controlModel.stop();
 			}
 		});
 		
@@ -110,19 +113,20 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	public void updateTable(Command c)
 	{
 		
-		tcM.fireTableDataChanged();
+		tableCommandModel.fireTableDataChanged();
 		//LSM.setSelectionInterval();
 	}
 	
 	
 	public void updateSelectedRover()
 	{
-		JRover.setName("Rover: " + cM.getSelectedRoverId());
+		JRover.setName("Rover: " + controlModel.getSelectedRoverId());
 	}
 
+	
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		//controlUI.updateConfigView(tableCommandModel.getValueAt(arg0, arg1));
 	}
 }

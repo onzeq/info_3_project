@@ -10,11 +10,11 @@ import model.*;
 public class PanelConfigDirection extends PanelCommandConfig{
 	private JTextField tDegree;
 	private JButton bSave;
-	private ControlUI cUI;
+	private ControlUI controlUI;
 	protected Command command;
 	public PanelConfigDirection(ControlUI cui)
 	{
-		cUI = cui;
+		controlUI = cui;
 	}
 	
 	private void setView()

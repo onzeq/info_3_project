@@ -16,11 +16,11 @@ public class PanelConfigPause extends PanelCommandConfig {
 
 	private JTextField tDuration;
 	private JButton bSave;
-	private ControlUI cUI;
+	private ControlUI controlUI;
 	
 	public PanelConfigPause(ControlUI cui)
 	{
-		cUI = cui;
+		controlUI = cui;
 	}
 	
 	private void setView()
