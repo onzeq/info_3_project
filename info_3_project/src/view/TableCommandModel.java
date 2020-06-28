@@ -2,52 +2,49 @@ package view;
 import javax.swing.table.AbstractTableModel;
 
 import model.CommandList;
+
+
 @SuppressWarnings("serial")
 public class TableCommandModel extends AbstractTableModel{
-	private static String[] columnNames = {"No.", "Command", "Configuration"};
-	CommandList cL;
+	static final String[] COLUMNNAMES = {"No.", "Command", "Configuration"};
+	CommandList commandList;
 	
 	public TableCommandModel (CommandList commandList)
 	{
-		cL = commandList;
+		this.commandList = commandList;
 		
 	}
 	@Override
 	public int getColumnCount() {
 		// Returns 3 because of column no. / name / config
-		return 3;
+		return COLUMNNAMES.length;
 	}
 
 	@Override
 	public int getRowCount() {
 		//returns count of Elements in commandList
-		return cL.getSize();
+		return commandList.getSize();
 	}
 
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		//implement for giving back the object in a specific row
 		
-		return cL.getCommand(arg0);
+		return commandList.getCommand(arg0);
 	}
 	
+
+	@Override
 	public String getColumnName(int col)
 	{
-		if(col > 2 || col < 0)
-		{
-			System.out.println("Out of Range!");
-			return null;
-		}
-		else
-		{
-			return columnNames[col];
-		}
+		return COLUMNNAMES[col];
+		
 		
 	}
 	
 	public String[] getColumnNames()
 	{
-		return columnNames; 
+		return COLUMNNAMES; 
 	}
 
 }

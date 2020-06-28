@@ -21,13 +21,13 @@ import model.ControlModel;
 public class PanelCommandTypes extends JPanel {
 	private JList<CommandType> commandTypeList = new JList<CommandType>();
 	private JButton bAdd = new JButton("Add");
-	ControlModel cM;
-	private CommandType selectedCT = null;
-	private JFrame cUI = null;
+	ControlModel controlModel;
+	private CommandType selectedCommandType = null;
+	private ControlUI controlUI = null;
 	
 	public PanelCommandTypes(ControlModel cM, ControlUI cui) {
-		this.cM = cM;
-		cUI = cui;
+		this.controlModel = cM;
+		controlUI = cui;
 		commandTypeList.setListData(cM.getCommandTypes());
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setView();
@@ -45,14 +45,16 @@ public class PanelCommandTypes extends JPanel {
 		bAdd.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				if(selectedCT == null)
+				if(selectedCommandType == null)
 				{
 					System.out.println("Kein CommandType ausgewählt");
 				}
 				else
 				{
-					cM.getCommandList().add(selectedCT.createInstance());
-					System.out.println("Hier sind wir");
+					controlModel.getCommandList().add(selectedCommandType.createInstance());
+					
+					controlUI.getTable().updateTable(null);
+					
 				}
 			}
 		});
@@ -65,7 +67,7 @@ public class PanelCommandTypes extends JPanel {
 			{
 				//If cell is selected 
 				if (!e.getValueIsAdjusting()) 
-			          selectedCT = commandTypeList.getSelectedValue();
+			          selectedCommandType = commandTypeList.getSelectedValue();
 			}
 		});
 	}

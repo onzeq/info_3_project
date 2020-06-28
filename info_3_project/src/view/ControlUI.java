@@ -23,6 +23,7 @@ import model.Command;
 import model.ControlModel;
 import model.IControlModelListener;
 
+@SuppressWarnings("serial")
 public class ControlUI extends JFrame  implements IControlModelListener{
 	//four different panels for different content in commands + default panel if no command is selected
 	private static final PanelCommandConfig[] panelConfigs = new PanelCommandConfig[4];
@@ -49,12 +50,12 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	public static final int CONFIGPAUSE 	= 3;
 	
 	//all the panels in the UI
-	private PanelCommandTypes pcTypes = null;
-	private PanelCommandTable pcTable = null;
-	private PanelConfigDefault pcDefault= null;
-	private PanelConfigDirection pcDirection= null;
-	private PanelConfigGear pcGear= null;
-	private PanelConfigPause pcPause= null;
+	private PanelCommandTypes panelCommandTypes = null;
+	private PanelCommandTable panelCommandTable = null;
+	private PanelConfigDefault panelConfigDefault= null;
+	private PanelConfigDirection panelConfigDirection= null;
+	private PanelConfigGear panelConfigGear= null;
+	private PanelConfigPause panelConfigPause= null;
 	
 	//file that is worked on
 	private File workFile = null;
@@ -69,12 +70,12 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		super("Control Developer");
 		this.setLayout( new BorderLayout() );
 		
-		pcTypes = new PanelCommandTypes(cM, this);
-		pcTable = new PanelCommandTable(cM, this);
-		pcDefault = new PanelConfigDefault();
-		pcDirection = new PanelConfigDirection(this);
-		pcGear = new PanelConfigGear(this);
-		pcPause = new PanelConfigPause(this);
+		panelCommandTypes = new PanelCommandTypes(cM, this);
+		panelCommandTable = new PanelCommandTable(cM, this);
+		panelConfigDefault = new PanelConfigDefault();
+		panelConfigDirection = new PanelConfigDirection(this);
+		panelConfigGear = new PanelConfigGear(this);
+		panelConfigPause = new PanelConfigPause(this);
 		this.setMenubar();
 		this.setView();
 		this.setController();
@@ -90,13 +91,16 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		dAbout.setVisible(false);
 		dAbout.add(lAbout);
 		
-	    this.add( pcTypes, BorderLayout.WEST );    
-	    this.add(pcTable, BorderLayout.CENTER );    
+	    this.add( panelCommandTypes, BorderLayout.WEST );    
+	    this.add(panelCommandTable, BorderLayout.CENTER );    
 	    this.add(messageArea, BorderLayout.SOUTH );    
-	    this.add( pcDefault, BorderLayout.EAST);    
+	    this.add( panelConfigDefault, BorderLayout.EAST);    
 	    
 	    this.pack();
 	   
+	}
+	public PanelCommandTable getTable() {
+		return this.panelCommandTable;
 	}
 	
 	/**
@@ -106,9 +110,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	{
 		this.add(messageArea);
 		this.add(menuBar);
-		this.add(pcTypes);
-		this.add(pcTable);
-		this.add(pcDefault);
+		this.add(panelCommandTypes);
+		this.add(panelCommandTable);
+		this.add(panelConfigDefault);
 	}
 	
 	/**
@@ -205,7 +209,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 */
 	public void updateTableView(Command c)
 	{
-		pcTable.updateTable(c);
+		panelCommandTable.updateTable(c);
 	}
 	
 	/**
@@ -217,19 +221,19 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	{
 		switch (c.getName()) {
 		case "Direction":
-			this.add(pcDirection);
+			this.add(panelConfigDirection);
 			break;
 			
 		case "Gear":
-			this.add(pcGear);
+			this.add(panelConfigGear);
 			break;
 			
 		case "Pause":
-			this.add(pcPause);
+			this.add(panelConfigPause);
 			break;
 
 		default:
-			this.add(pcDefault);
+			this.add(panelConfigDefault);
 			break;
 		}
 	}
@@ -248,8 +252,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 * invoke Method fr update the rover and shows the Information about the rover in the messagepanel
 	 */
 	public void roverUpdated() {
-		pcTable.updateSelectedRover();
-		messageArea.setText("Rover updated:" + pcTable.cM.getSelectedRoverId());
+		panelCommandTable.updateSelectedRover();
+		messageArea.setText("Rover updated:" + panelCommandTable.controlModel.getSelectedRoverId());
 		
 	}
 	

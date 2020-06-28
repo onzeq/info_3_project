@@ -16,11 +16,11 @@ public class PanelConfigGear extends PanelCommandConfig{
 	private JTextField tSpeed;
 	private JTextField tDuration;
 	private JButton bSave;
-	private ControlUI cUI;
+	private ControlUI controlUI;
 	
 	public PanelConfigGear(ControlUI cui)
 	{
-		cUI = cui;
+		controlUI = cui;
 	}
 	
 	private void setView()
