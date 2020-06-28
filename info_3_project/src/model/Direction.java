@@ -54,7 +54,7 @@ public class Direction extends Command implements IDirection {
 	 */
 	//abstract from superclass implemented individally for Direction
 	public String getConfig() {
-		String config = "Name:  " + this.getName() +" "+  degree + " degree";
+		String config = "Degree: "+  degree + " degree";
 		return config;
 	}
 	

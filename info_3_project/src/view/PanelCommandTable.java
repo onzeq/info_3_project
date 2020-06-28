@@ -2,18 +2,22 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 import model.Command;
 import model.ControlModel;
@@ -43,26 +47,28 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		controlModel = cm;
 		
 		tableCommandModel = new TableCommandModel(controlModel.getCommandList());
+		tCommands.setModel(tableCommandModel);		
 		
-		tCommands.setModel(tableCommandModel);
-	
 		this.setView();
 		this.setController();
 		this.setVisible(true);
-		
-		
 		
 	}
 	
 	private void setView()
 	{
-		this.add(bRemove);
-		this.add(bUp);
-		this.add(bDown);
-		this.add(bStart);
-		this.add(bStop);
-		this.add(JRover);
-		this.add(tCommands);
+		this.setLayout(new BorderLayout());
+		JPanel usePanel = new JPanel();
+		this.add(new JScrollPane(tCommands), BorderLayout.CENTER);
+		usePanel.add(bRemove);
+		usePanel.add(bUp);
+		usePanel.add(bDown);
+		usePanel.add(JRover);
+		usePanel.add(bStart);
+		usePanel.add(bStop);
+		this.add(usePanel, BorderLayout.SOUTH);
+		
+		
 	}
 	
 	private void setController()
@@ -71,7 +77,7 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 			public void actionPerformed(ActionEvent anEvent) 
 			{
 				controlModel.getCommandList().remove(tCommands.getSelectedRow());
-				//update --> configview / tableview
+				tableCommandModel.fireTableDataChanged();
 				
 			}
 		});
@@ -79,12 +85,14 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 			public void actionPerformed(ActionEvent anEvent) 
 			{
 				controlModel.getCommandList().moveUp(tCommands.getSelectedRow());
+				tableCommandModel.fireTableDataChanged();
 			}
 		});
 		bDown.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
 				controlModel.getCommandList().moveDown(tCommands.getSelectedRow());
+				tableCommandModel.fireTableDataChanged();
 			}
 		});
 		bStart.addActionListener( new ActionListener() {
@@ -112,9 +120,7 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	 */
 	public void updateTable(Command c)
 	{
-		
 		tableCommandModel.fireTableDataChanged();
-		//LSM.setSelectionInterval();
 	}
 	
 	

@@ -1,4 +1,7 @@
 package view;
+import java.awt.BorderLayout;
+
+import javax.swing.JScrollPane;
 import javax.swing.table.AbstractTableModel;
 
 import model.CommandList;
@@ -12,6 +15,7 @@ public class TableCommandModel extends AbstractTableModel{
 	public TableCommandModel (CommandList commandList)
 	{
 		this.commandList = commandList;
+		
 		
 	}
 	@Override
@@ -29,8 +33,45 @@ public class TableCommandModel extends AbstractTableModel{
 	@Override
 	public Object getValueAt(int arg0, int arg1) {
 		//implement for giving back the object in a specific row
-		
-		return commandList.getCommand(arg0);
+		if(commandList.getCommand(arg0).getName()=="Direction")
+		{
+			switch (arg1) {
+			case 0:
+				return arg0;
+			case 1:
+				return commandList.getCommand(arg0).getName();
+			case 2:
+				return commandList.getCommand(arg0).getConfig();	
+			default:
+				return "Fehler";
+			}
+		}
+		else if(commandList.getCommand(arg0).getName()=="Gear")
+		{
+			switch (arg1) {
+			case 0:
+				return arg0;
+			case 1:
+				return commandList.getCommand(arg0).getName();
+			case 2:
+				return commandList.getCommand(arg0).getConfig();	
+			default:
+				return "Fehler";
+			}
+		}
+		else
+		{
+			switch (arg1) {
+			case 0:
+				return arg0;
+			case 1:
+				return commandList.getCommand(arg0).getName();
+			case 2:
+				return commandList.getCommand(arg0).getConfig();	
+			default:
+				return "Fehler";
+			}
+		}
 	}
 	
 

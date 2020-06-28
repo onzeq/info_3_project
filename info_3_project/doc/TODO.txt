@@ -16,3 +16,10 @@ Rover selektieren durch Liste oder nächsten freien rover nehmen
 fireTabledataChanged wie wird es verwendet
 
 valueChanged implementieren
+
+
+
+
+
+Header anzeigen
+Einzeln Column ausgeben

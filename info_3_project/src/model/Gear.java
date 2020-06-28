@@ -72,7 +72,7 @@ public class Gear extends Command implements IGear{
 	 */
 	//abstract from superclass implemented individally for Direction
 	public String getConfig() {
-		String config = "Name:  " + this.getName() +" "+  speed + " cm/sec " + duration + " sec";
+		String config = "Speed: " + speed + " cm/sec; Duration: " + duration + " sec";
 		return config;
 	}
 	

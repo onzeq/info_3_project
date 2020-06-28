@@ -209,6 +209,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 */
 	public void updateTableView(Command c)
 	{
+		cM.getCommandList().add(c);
 		panelCommandTable.updateTable(c);
 	}
 	

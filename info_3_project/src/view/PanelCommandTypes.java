@@ -51,10 +51,7 @@ public class PanelCommandTypes extends JPanel {
 				}
 				else
 				{
-					controlModel.getCommandList().add(selectedCommandType.createInstance());
-					
-					controlUI.getTable().updateTable(null);
-					
+					controlUI.updateTableView(selectedCommandType.createInstance());
 				}
 			}
 		});

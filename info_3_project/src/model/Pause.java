@@ -42,7 +42,7 @@ public class Pause extends Command implements IPause {
 	 */
 	//abstract from superclass implemented individally for Direction
 	public String getConfig() {
-		String config = "Name:  " + this.getName() +" "+ duration + " sec";
+		String config = "Duration: " + duration + " sec";
 		return config;
 	}
 	
