@@ -23,3 +23,5 @@ valueChanged implementieren
 
 --> Save speichert nicht als .txt
 --> SelectedRow action
+
+JTable hat ListSelectionModel

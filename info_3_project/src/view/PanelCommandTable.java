@@ -31,7 +31,6 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	private JButton bStop = new JButton("Stop");
 	private JLabel JRover = new JLabel("Rover: ");
 	private JTable tCommands = new JTable();
-	private ListSelectionModel listSelectionModel;
 	ControlUI controlUI = null;
 	ControlModel controlModel = null;
 	TableCommandModel tableCommandModel = null;
@@ -48,7 +47,7 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		
 		tableCommandModel = new TableCommandModel(controlModel.getCommandList());
 		tCommands.setModel(tableCommandModel);		
-		
+		tCommands.getSelectionModel().addListSelectionListener(this);
 		this.setView();
 		this.setController();
 		this.setVisible(true);
@@ -73,6 +72,8 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	
 	private void setController()
 	{
+		
+		
 		bRemove.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
@@ -110,6 +111,7 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		
 		
 		
+		
 	}
 	
 	
@@ -132,7 +134,9 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	
 	@Override
 	public void valueChanged(ListSelectionEvent arg0) {
-		// TODO Auto-generated method stub
-		//controlUI.updateConfigView(tableCommandModel.getValueAt(arg0, arg1));
+		if(arg0.getValueIsAdjusting() != true)
+		{
+			System.out.println(tCommands.getSelectedRow());
+		}
 	}
 }
