@@ -1,12 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import javax.swing.JButton;
+
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -14,19 +14,21 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.FileChooserUI;
+
 
 import model.Command;
 import model.ControlModel;
+
 import model.IControlModelListener;
+
 
 @SuppressWarnings("serial")
 public class ControlUI extends JFrame  implements IControlModelListener{
 	//four different panels for different content in commands + default panel if no command is selected
-	private static final PanelCommandConfig[] panelConfigs = new PanelCommandConfig[4];
+	//private static final PanelCommandConfig[] panelConfigs = new PanelCommandConfig[4];
 	
 	//attribute for message area in the bottom of the UI 
 	private JTextArea messageArea = new JTextArea();
@@ -73,9 +75,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		panelCommandTypes = new PanelCommandTypes(cM, this);
 		panelCommandTable = new PanelCommandTable(cM, this);
 		panelConfigDefault = new PanelConfigDefault();
-		panelConfigDirection = new PanelConfigDirection(this);
-		panelConfigGear = new PanelConfigGear(this);
-		panelConfigPause = new PanelConfigPause(this);
+		panelConfigDirection = new PanelConfigDirection(this, null);
+		panelConfigGear = new PanelConfigGear(this, null);
+		panelConfigPause = new  PanelConfigPause(this,null);
 		this.setMenubar();
 		this.setView();
 		this.setController();
@@ -92,8 +94,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		dAbout.add(lAbout);
 		
 	    this.add( panelCommandTypes, BorderLayout.WEST );    
-	    this.add(panelCommandTable, BorderLayout.CENTER );    
-	    this.add(messageArea, BorderLayout.SOUTH );    
+	    this.add( panelCommandTable, BorderLayout.CENTER );    
+	    this.add( messageArea, BorderLayout.SOUTH );    
 	    this.add( panelConfigDefault, BorderLayout.EAST);    
 	    
 	    this.pack();
@@ -112,7 +114,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		this.add(menuBar);
 		this.add(panelCommandTypes);
 		this.add(panelCommandTable);
-		this.add(panelConfigDefault);
+		
 	}
 	
 	/**
@@ -220,21 +222,48 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	
 	public void updateConfigView(Command c)
 	{
+		
 		switch (c.getName()) {
 		case "Direction":
-			this.add(panelConfigDirection);
+			panelConfigDirection = new PanelConfigDirection(this, c);
+			this.add(panelConfigDirection, BorderLayout.EAST);
+			panelConfigDirection.setVisible(true);
+			
+			panelConfigGear.setVisible(false);
+			panelConfigPause.setVisible(false);
+			panelConfigDefault.setVisible(false);
 			break;
 			
 		case "Gear":
-			this.add(panelConfigGear);
+			panelConfigGear = new PanelConfigGear(this, c);
+			this.add(panelConfigGear, BorderLayout.EAST);
+			
+			panelConfigGear.setVisible(true);
+			
+			panelConfigDirection.setVisible(false);
+			panelConfigPause.setVisible(false);
+			panelConfigDefault.setVisible(false);
 			break;
 			
 		case "Pause":
-			this.add(panelConfigPause);
+			panelConfigPause = new PanelConfigPause(this, c);
+			this.add(panelConfigPause, BorderLayout.EAST);
+			
+			panelConfigPause.setVisible(true);
+			
+			panelConfigGear.setVisible(false);
+			panelConfigDirection.setVisible(false);
+			panelConfigDefault.setVisible(false);
 			break;
 
 		default:
-			this.add(panelConfigDefault);
+			this.add(panelConfigDefault, BorderLayout.EAST);
+			
+			panelConfigDefault.setVisible(true);
+			
+			panelConfigGear.setVisible(false);
+			panelConfigDirection.setVisible(false);
+			panelConfigPause.setVisible(false);
 			break;
 		}
 	}

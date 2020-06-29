@@ -7,20 +7,27 @@ import javax.swing.*;
 
 import model.*;
 
+@SuppressWarnings("serial")
 public class PanelConfigDirection extends PanelCommandConfig{
-	private JTextField tDegree;
-	private JButton bSave;
+	private JTextField tDegree = new JTextField(10);
+	private JButton bSave = new JButton("Save");
 	private ControlUI controlUI;
-	protected Command command;
-	public PanelConfigDirection(ControlUI cui)
+	
+	public PanelConfigDirection(ControlUI cui, Command d)
 	{
+		command = d;
 		controlUI = cui;
+		this.update(d);
+		setView();
+		setController();
+		
 	}
 	
 	private void setView()
 	{
-		JLabel lDirection = new JLabel("Direction");
-		JLabel lDegree = new JLabel("Degree");
+		this.add(new JLabel("Direction"));
+		this.add(new JLabel("Degree"));
+		
 		this.add(tDegree);
 		this.add(bSave);
 	}
@@ -30,15 +37,20 @@ public class PanelConfigDirection extends PanelCommandConfig{
 		bSave.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				String textfield = tDegree.getText();
+				((Direction) command).setDegree(Integer.parseInt(tDegree.getText()));
+				controlUI.getTable().updateTable(command);
 			}
+				
+				
 		});
 	}
 	
 	public void update(Command c) {
 		
-		Direction direction = (Direction)c;
-		direction.setDegree(Integer.parseInt(tDegree.getText()));
+		if(c != null) {
+			tDegree.setText(Integer.toString((((Direction) c).getDegree()) ));
+		}
+		
 		
 	}
 

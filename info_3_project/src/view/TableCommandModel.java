@@ -1,7 +1,5 @@
 package view;
-import java.awt.BorderLayout;
 
-import javax.swing.JScrollPane;
 import javax.swing.table.AbstractTableModel;
 
 import model.CommandList;

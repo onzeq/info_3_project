@@ -8,25 +8,31 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import model.Command;
-import model.Direction;
-import model.Gear;
+
 import model.Pause;
 
+@SuppressWarnings("serial")
 public class PanelConfigPause extends PanelCommandConfig {
 
-	private JTextField tDuration;
-	private JButton bSave;
+	private JTextField tDuration = new JTextField(10);
+	private JButton bSave = new JButton("Save");
 	private ControlUI controlUI;
 	
-	public PanelConfigPause(ControlUI cui)
+	
+	public PanelConfigPause(ControlUI cui, Command p)
 	{
+		command = p;
 		controlUI = cui;
+		this.update(p);
+		setView();
+		setController();
+		
 	}
 	
 	private void setView()
 	{
-		JLabel lPause = new JLabel("Pause");
-		JLabel lDuration = new JLabel("Duration");
+		this.add(new JLabel("Pause"));
+		this.add(new JLabel("Duration"));
 		this.add(tDuration);
 		this.add(bSave);
 	}
@@ -36,15 +42,17 @@ public class PanelConfigPause extends PanelCommandConfig {
 		bSave.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				String textfield = tDuration.getText();
+				((Pause) command).setDuration(Integer.parseInt(tDuration.getText()));
+				controlUI.getTable().updateTable(command);
 			}
 		});
 	}
 	
 	public void update(Command c) {
+		if(c != null) {
+			tDuration.setText(Integer.toString((((Pause) c).getDuration()) ));
+		}
 		
-		Pause pause = (Pause)c;
-		pause.setDuration(Integer.parseInt(tDuration.getText()));
 		
 	}
 

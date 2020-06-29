@@ -24,7 +24,7 @@ import hsrt.mec.controldeveloper.core.com.RoverHandler;
 public class ControlModel extends ControlModelRegistry implements IComListener{
 	
 	public final static int NOROVERSELECTED = -1;
-	private final String PATH = "";
+	//private final String PATH = "";
 	private static ControlModel cM;
 	private Rover selectedRover;
 	private CommandType[] cT = new CommandType[3];

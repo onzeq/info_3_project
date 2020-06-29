@@ -1,8 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,13 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
+
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumnModel;
+
 
 import model.Command;
 import model.ControlModel;
@@ -136,6 +132,10 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	public void valueChanged(ListSelectionEvent arg0) {
 		if(arg0.getValueIsAdjusting() != true)
 		{
+			//happens after moving up or down
+			if(tCommands.getSelectedRow() == -1) {
+				return;
+			}
 			System.out.println(tCommands.getSelectedRow());
 			Command selectedCommand = controlModel.getCommandList().getCommand(tCommands.getSelectedRow());
 			controlUI.updateConfigView(selectedCommand);

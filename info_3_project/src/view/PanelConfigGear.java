@@ -8,27 +8,32 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import model.Command;
-import model.Direction;
 import model.Gear;
 
+@SuppressWarnings("serial")
 public class PanelConfigGear extends PanelCommandConfig{
 
-	private JTextField tSpeed;
-	private JTextField tDuration;
-	private JButton bSave;
+	private JTextField tSpeed = new JTextField(10);
+	private JTextField tDuration = new JTextField(10);;
+	private JButton bSave = new JButton("Save");
 	private ControlUI controlUI;
 	
-	public PanelConfigGear(ControlUI cui)
+	
+	public PanelConfigGear(ControlUI cui,Command g)
 	{
+		command = g;
 		controlUI = cui;
+		this.update(g);
+		setView();
+		setController();
 	}
 	
 	private void setView()
 	{
-		JLabel lGear = new JLabel("Gear");
-		JLabel lSpeed = new JLabel("Speed");
+		this.add(new JLabel("Gear"));
+		this.add(new JLabel("Speed"));
 		this.add(tSpeed);
-		JLabel lDuration = new JLabel("Duration");
+		this.add(new JLabel("Duration"));
 		this.add(tDuration);
 		this.add(bSave);
 	}
@@ -38,17 +43,20 @@ public class PanelConfigGear extends PanelCommandConfig{
 		bSave.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				//???
+				((Gear) command).setSpeed(Integer.parseInt(tSpeed.getText() ));
+				((Gear) command).setDuration(Integer.parseInt(tDuration.getText() ));
+				controlUI.getTable().updateTable(command);
 			}
 		});
 	}
 	
 	public void update(Command c) {
-		Gear gear = (Gear)c;
-		gear.setSpeed(Integer.parseInt(tSpeed.getText()));
-		gear.setDuration(Integer.parseInt(tDuration.getText()));
+		if(c != null) {
+			tSpeed.setText(Integer.toString((((Gear) c).getSpeed()) ));
+			tDuration.setText(Integer.toString((((Gear) c).getDuration()) ));
 		
 		
+	}
 	}
 	
 

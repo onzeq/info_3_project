@@ -1,19 +1,9 @@
 package ControlDeveloper;
-import model.*;
-import view.ControlUI;
-import view.PanelCommandTypes;
-import hsrt.mec.controldeveloper.core.com.command.ICommand;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.Random;
-import java.util.Vector;
-import java.io.FileWriter; 
-import hsrt.mec.controldeveloper.io.ObjectFileHandler;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.util.Random;
+
+import model.*;
+
 
 public class ControlDeveloper {
 	//Max Anzahl im Array
@@ -24,7 +14,7 @@ public class ControlDeveloper {
 	public String ControlDeveloper_Member = "MEMBER Control-Developer"; //nur fuer eine Instanz gültig , veränderter Wert nur für die eine Instanz verändert
 	public static String ControlDeveloper_Class = "CLASS Control-Developer"; //Klassenvariable --> statische Variable verändert sich in allen Objekten der Klasse 
 	
-	private static String PATH = "file.obj";
+	//private static String PATH = "file.obj";
 	//Array zum Speichern von Befehlen
 	public Command commands[] = new Command[MAXCOMMANDS];
 
