@@ -103,9 +103,14 @@ public class ControlDeveloper {
 		
 		
 		cl1.printList();
-		
+		System.out.println("MoveUp");
 		cl1.moveUp(0);
+		cl1.printList();
+		System.out.println("MoveDown");
 		cl1.moveDown(1);
+		cl1.printList();
+		System.out.println("MoveUp");
+		cl1.moveUp(0);
 		cl1.printList();
 		/*ControlDeveloper c1 = new ControlDeveloper();
 		c1.createCommands();

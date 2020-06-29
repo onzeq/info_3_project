@@ -190,10 +190,10 @@ public class CommandList {
 				enext1.setPrev(eprev);
 			}
 			else {
-				
+				//am Anfang
 				this.root = enext1;
 				enext1.setNext(emov);
-				
+				enext1.setPrev(null);
 				
 			}
 			//catch error if in the end of the list
@@ -242,6 +242,7 @@ public class CommandList {
 			else //if start of the list, root is needed
 			{
 				this.root = emov;
+				emov.setPrev(null);
 			}
 			
 			
@@ -295,6 +296,7 @@ public class CommandList {
 		else if(pos == 0 && size != 1) // element is at first place --> link root
 		{
 			root = enext;
+			root.setPrev(null);
 			this.size--;
 			return eremove.getElement();
 		}
