@@ -137,6 +137,9 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		if(arg0.getValueIsAdjusting() != true)
 		{
 			System.out.println(tCommands.getSelectedRow());
+			Command selectedCommand = controlModel.getCommandList().getCommand(tCommands.getSelectedRow());
+			controlUI.updateConfigView(selectedCommand);
+			
 		}
 	}
 }
