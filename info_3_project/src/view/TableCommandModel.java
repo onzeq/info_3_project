@@ -37,7 +37,7 @@ public class TableCommandModel extends AbstractTableModel{
 		{
 			switch (arg1) {
 			case 0:
-				return arg0;
+				return arg0 +1;
 			case 1:
 				return commandList.getCommand(arg0).getName();
 			case 2:
@@ -50,7 +50,7 @@ public class TableCommandModel extends AbstractTableModel{
 		{
 			switch (arg1) {
 			case 0:
-				return arg0;
+				return arg0 +1;
 			case 1:
 				return commandList.getCommand(arg0).getName();
 			case 2:
@@ -63,7 +63,7 @@ public class TableCommandModel extends AbstractTableModel{
 		{
 			switch (arg1) {
 			case 0:
-				return arg0;
+				return arg0 +1;
 			case 1:
 				return commandList.getCommand(arg0).getName();
 			case 2:
