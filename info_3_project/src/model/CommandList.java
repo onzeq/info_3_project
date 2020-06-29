@@ -66,7 +66,7 @@ public class CommandList {
 			return;
 		}
 		while(current != null) {
-			System.out.println(current.getElement().getConfig());
+			System.out.println(current.getElement().getName());
 			//current gets the content of the next element(iterates through)
 			current = current.getNext();
 			
