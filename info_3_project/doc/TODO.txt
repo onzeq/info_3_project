@@ -21,7 +21,10 @@ valueChanged implementieren
 
 
 
---> Save speichert nicht als .txt
+--> öffnen funtioniert noch nicht
 --> SelectedRow action
 
-JTable hat ListSelectionModel
+message Box füllen 
+Panels feste Breite zuweisen
+Rover select Label bei auswählen von Rover aktualisieren
+
