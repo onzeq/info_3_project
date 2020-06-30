@@ -79,7 +79,7 @@ public class CommandList {
  	*/
 	public void clear() {
 		//Content no longer accessable --> cleared or Memoery Leaks? Does the garbage collector the rest?
-		root= null;	
+		root= new Element(null);	
 		size = 0;
 	}
 	

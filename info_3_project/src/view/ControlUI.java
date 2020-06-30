@@ -78,6 +78,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		panelConfigDirection = new PanelConfigDirection(this, null);
 		panelConfigGear = new PanelConfigGear(this, null);
 		panelConfigPause = new  PanelConfigPause(this,null);
+		panelConfigDirection.setVisible(false);
+		panelConfigGear.setVisible(false);
+		panelConfigPause.setVisible(false);
 		this.setMenubar();
 		this.setView();
 		this.setController();
@@ -152,11 +155,20 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 					workFile = fileChooser.getSelectedFile();
 					cM.readCommands(workFile);
 					dFileChooser.dispose();
+					if(cM.getCommandList().getSize()==0)
+					{
+						messageUpdated("List from "+ workFile.getPath()+ " is empty!");
+					}
+					else
+					{
+						messageUpdated("Opened List from "+ workFile.getPath());
+					}
 					
 				} else if (result == JFileChooser.CANCEL_OPTION) {
-				    System.out.println("Cancel was selected");
+					messageUpdated("Cancel Selection");
 				    dFileChooser.dispose();
 				}
+				panelCommandTable.updateTable(null);
 			}
 		});
 		mISave.addActionListener( new ActionListener() {
@@ -175,9 +187,10 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 					workFile = fileChooser.getSelectedFile();
 					cM.writeCommands(workFile);
 					dFileChooser.dispose();
+					messageUpdated("Saved List in "+ workFile.getPath());
 					
 				} else if (result == JFileChooser.CANCEL_OPTION) {
-				    System.out.println("Cancel was selected");
+					messageUpdated("Cancel Selection");
 				    dFileChooser.dispose();
 				}
 				
@@ -225,6 +238,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		
 		switch (c.getName()) {
 		case "Direction":
+			panelConfigDirection.setVisible(false);
 			panelConfigDirection = new PanelConfigDirection(this, c);
 			this.add(panelConfigDirection, BorderLayout.EAST);
 			panelConfigDirection.setVisible(true);
@@ -235,6 +249,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 			break;
 			
 		case "Gear":
+			panelConfigGear.setVisible(false);
 			panelConfigGear = new PanelConfigGear(this, c);
 			this.add(panelConfigGear, BorderLayout.EAST);
 			
@@ -246,6 +261,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 			break;
 			
 		case "Pause":
+			panelConfigPause.setVisible(false);
 			panelConfigPause = new PanelConfigPause(this, c);
 			this.add(panelConfigPause, BorderLayout.EAST);
 			

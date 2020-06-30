@@ -1,4 +1,5 @@
 package ControlDeveloper;
+import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
@@ -14,7 +15,7 @@ public class ControlDeveloper {
 	public String ControlDeveloper_Member = "MEMBER Control-Developer"; //nur fuer eine Instanz gültig , veränderter Wert nur für die eine Instanz verändert
 	public static String ControlDeveloper_Class = "CLASS Control-Developer"; //Klassenvariable --> statische Variable verändert sich in allen Objekten der Klasse 
 	
-	//private static String PATH = "file.obj";
+	private static String PATH = "C:/Users/Christian/Desktop/Rover_Test.txt";
 	//Array zum Speichern von Befehlen
 	public Command commands[] = new Command[MAXCOMMANDS];
 
@@ -117,9 +118,9 @@ public class ControlDeveloper {
 		vectorList.add(cl1.getCommand(3));
 		vectorList.add(cl1.getCommand(4));
 		vectorList.add(cl1.getCommand(5));
-		System.out.println(vectorList);
+		System.out.println(vectorList);*/
 		
-		File testfile = new File("C:\\Users\\Christian\\Desktop\\objects\\file.txt");
+		File testfile = new File("C:\\Users\\Christian\\Desktop\\Rover_Test.txt");
 		//Singelton erstellen:
 		ControlModel cM = ControlModel.getModel();
 		CommandList cL2 = cM.getCommandList();
@@ -130,7 +131,7 @@ public class ControlDeveloper {
 		System.out.println("Cleared the list:");
 		cL2.clear();
 		int size = cL2.getSize();
-		for(int i = 1; i <= size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			System.out.println(cL2.getCommand(i));
 		}
@@ -138,13 +139,13 @@ public class ControlDeveloper {
 		cM.readCommands(testfile);
 		System.out.println("Filled the list:");
 		size = cL2.getSize();
-		for(int i = 1; i <= size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			System.out.println(cL2.getCommand(i));
 		}
 		
 		
-		CommandType cT = new CommandType(CommandType.DIRECTION);
+		/*CommandType cT = new CommandType(CommandType.DIRECTION);
 		System.out.println(cT.getName());
 		Command Test = cT.createInstance();
 		System.out.println(Test);*/
