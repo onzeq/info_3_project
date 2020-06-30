@@ -45,11 +45,12 @@ public class PanelCommandTypes extends JPanel {
 			{
 				if(selectedCommandType == null)
 				{
-					System.out.println("Kein CommandType ausgewählt");
+					controlUI.messageUpdated("No CommandType Selected");
 				}
 				else
 				{
 					controlUI.updateTableView(selectedCommandType.createInstance());
+					controlUI.messageUpdated("Added Command "+ selectedCommandType.getName());
 				}
 			}
 		});

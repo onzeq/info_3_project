@@ -81,6 +81,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		panelConfigDirection.setVisible(false);
 		panelConfigGear.setVisible(false);
 		panelConfigPause.setVisible(false);
+		this.setDefaultConfig();
 		this.setMenubar();
 		this.setView();
 		this.setController();
@@ -99,7 +100,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	    this.add( panelCommandTypes, BorderLayout.WEST );    
 	    this.add( panelCommandTable, BorderLayout.CENTER );    
 	    this.add( messageArea, BorderLayout.SOUTH );    
-	    this.add( panelConfigDefault, BorderLayout.EAST);    
+	     
 	    
 	    this.pack();
 	   
@@ -140,7 +141,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		mIOpen.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				
+				setDefaultConfig();
 				JFileChooser fileChooser = new JFileChooser();
 				
 				FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -174,6 +175,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		mISave.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				setDefaultConfig();
 				JFileChooser fileChooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				        ".txt Documents only", "txt");
@@ -273,17 +275,19 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 			break;
 
 		default:
-			this.add(panelConfigDefault, BorderLayout.EAST);
-			
-			panelConfigDefault.setVisible(true);
-			
-			panelConfigGear.setVisible(false);
-			panelConfigDirection.setVisible(false);
-			panelConfigPause.setVisible(false);
+			this.setDefaultConfig();
 			break;
 		}
 	}
 	
+	public void setDefaultConfig()
+	{
+		this.add( panelConfigDefault, BorderLayout.EAST);   
+		panelConfigDefault.setVisible(true);
+		panelConfigGear.setVisible(false);
+		panelConfigDirection.setVisible(false);
+		panelConfigPause.setVisible(false);
+	}
 	@Override
 	/**
 	 * implements method from Interface IControlModelListener and shows the text in the textfield

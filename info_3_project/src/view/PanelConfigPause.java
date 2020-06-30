@@ -44,6 +44,7 @@ public class PanelConfigPause extends PanelCommandConfig {
 			{
 				((Pause) command).setDuration(Integer.parseInt(tDuration.getText()));
 				controlUI.getTable().updateTable(command);
+				controlUI.messageUpdated("Saved successful!");
 			}
 		});
 	}

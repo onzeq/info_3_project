@@ -61,9 +61,7 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 		usePanel.add(JRover);
 		usePanel.add(bStart);
 		usePanel.add(bStop);
-		this.add(usePanel, BorderLayout.SOUTH);
-		
-		
+		this.add(usePanel, BorderLayout.SOUTH);	
 	}
 	
 	private void setController()
@@ -75,33 +73,57 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 			{
 				controlModel.getCommandList().remove(tCommands.getSelectedRow());
 				tableCommandModel.fireTableDataChanged();
-				
+				controlUI.setDefaultConfig();
+				controlUI.messageUpdated("Command Removed successful!");
 			}
 		});
 		bUp.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				controlModel.getCommandList().moveUp(tCommands.getSelectedRow());
-				tableCommandModel.fireTableDataChanged();
+				if(tCommands.getSelectedRow() == controlModel.getCommandList().getSize()-1)
+				{
+					controlUI.setDefaultConfig();
+					controlUI.messageUpdated("MoveUp not possible!");
+				}
+				else
+				{
+					controlModel.getCommandList().moveUp(tCommands.getSelectedRow());
+					tableCommandModel.fireTableDataChanged();
+					controlUI.setDefaultConfig();
+					controlUI.messageUpdated("MovedUp successful!");
+				}
 			}
 		});
 		bDown.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
-				controlModel.getCommandList().moveDown(tCommands.getSelectedRow());
-				tableCommandModel.fireTableDataChanged();
+				if(tCommands.getSelectedRow() == 0)
+				{
+					controlUI.setDefaultConfig();
+					controlUI.messageUpdated("MoveDown not possible!");
+				}
+				else
+				{
+					controlModel.getCommandList().moveDown(tCommands.getSelectedRow());
+					tableCommandModel.fireTableDataChanged();
+					controlUI.setDefaultConfig();
+					controlUI.messageUpdated("MovedDown successful!");
+				}
+				
 			}
 		});
 		bStart.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
 				controlModel.start();
+				controlUI.messageUpdated("Simulation started");
 			}
 		});
 		bStop.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
 				controlModel.stop();
+				controlUI.messageUpdated("Simulation stopped");
 			}
 		});
 		
