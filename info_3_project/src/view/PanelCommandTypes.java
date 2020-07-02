@@ -1,6 +1,7 @@
 package view;
 import javax.swing.JList;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -28,6 +29,7 @@ public class PanelCommandTypes extends JPanel {
 		controlUI = cui;
 		commandTypeList.setListData(cM.getCommandTypes());
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+	
 		this.setView();
 		this.setController();
 		this.setVisible(true);

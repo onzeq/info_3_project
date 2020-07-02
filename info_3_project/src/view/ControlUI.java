@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
-
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -73,7 +73,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		this.setLayout( new BorderLayout() );
 		
 		panelCommandTypes = new PanelCommandTypes(cM, this);
+		
 		panelCommandTable = new PanelCommandTable(cM, this);
+		
 		panelConfigDefault = new PanelConfigDefault();
 		panelConfigDirection = new PanelConfigDirection(this, null);
 		panelConfigGear = new PanelConfigGear(this, null);
