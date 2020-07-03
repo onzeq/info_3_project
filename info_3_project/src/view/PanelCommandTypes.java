@@ -29,13 +29,14 @@ public class PanelCommandTypes extends JPanel {
 		controlUI = cui;
 		commandTypeList.setListData(cM.getCommandTypes());
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-	
+		
 		this.setView();
 		this.setController();
 		this.setVisible(true);
 	}
 	private void setView() {
 		//adds graphical components to the panel itself
+		commandTypeList.set;
 		this.add(commandTypeList);
 		this.add(bAdd);
 	}

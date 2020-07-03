@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -51,6 +51,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	public static final int CONFIGGEAR 		= 2;
 	public static final int CONFIGPAUSE 	= 3;
 	
+	JSplitPane splitPaneTypes = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+	JLabel typesHeader = new JLabel("Types");
 	//all the panels in the UI
 	private PanelCommandTypes panelCommandTypes = null;
 	private PanelCommandTable panelCommandTable = null;
@@ -308,6 +310,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		messageArea.setText("Rover updated:" + panelCommandTable.controlModel.getSelectedRoverId());
 		
 	}
+	
+	
+	
 	
 	public static void main(String[] argv) {
 		new ControlUI();
