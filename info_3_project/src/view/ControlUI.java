@@ -69,13 +69,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 * Constructor creates Instances of the panels and sets everything needed to see the GUI window
 	 */
 	public ControlUI() {
-		super("Control Developer");
-		this.setLayout( new BorderLayout() );
-		
+		//Initialisieren der verschiedenen Panels
 		panelCommandTypes = new PanelCommandTypes(cM, this);
-		
 		panelCommandTable = new PanelCommandTable(cM, this);
-		
 		panelConfigDefault = new PanelConfigDefault();
 		panelConfigDirection = new PanelConfigDirection(this, null);
 		panelConfigGear = new PanelConfigGear(this, null);
@@ -83,30 +79,11 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		panelConfigDirection.setVisible(false);
 		panelConfigGear.setVisible(false);
 		panelConfigPause.setVisible(false);
-		this.setDefaultConfig();
-		this.setMenubar();
+
 		this.setView();
 		this.setController();
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setVisible(true);
-		super.setJMenuBar(menuBar);
-		//no user input in textarea
-		messageArea.setEditable(false);
-	    
-		//this.setSize(arg0, arg1);
-		
-		//About Dialog unsichtbar machen
-		dAbout.setVisible(false);
-		dAbout.add(lAbout);
-		
-	    this.add( panelCommandTypes, BorderLayout.WEST );    
-	    this.add( panelCommandTable, BorderLayout.CENTER );    
-	    this.add( messageArea, BorderLayout.SOUTH );    
-	     
-	    
-	    this.pack();
-	   
 	}
+	
 	public PanelCommandTable getTable() {
 		return this.panelCommandTable;
 	}
@@ -116,11 +93,29 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	*/
 	private void setView()
 	{
-		this.add(messageArea);
-		this.add(menuBar);
-		this.add(panelCommandTypes);
-		this.add(panelCommandTable);
+		this.setTitle("Informatik 3 Praktikum - Christian und Jakob");
 		
+		BorderLayout layout = new BorderLayout(5,5);
+		this.setLayout(layout);
+		
+		this.setMinimumSize(new Dimension(1100,500));
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
+		this.add(panelCommandTable, BorderLayout.CENTER);
+		panelCommandTypes.setPreferredSize(new Dimension(150,500));
+		this.add( panelCommandTypes, BorderLayout.WEST );    
+	    this.add( messageArea, BorderLayout.SOUTH );  
+		this.setDefaultConfig();
+		
+		dAbout.setVisible(false);
+		dAbout.add(lAbout);
+		
+		setMenubar();
+		super.setJMenuBar(menuBar);
+		this.setVisible(true);
+
+		messageArea.setEditable(false);
 	}
 	
 	/**
@@ -244,6 +239,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		case "Direction":
 			panelConfigDirection.setVisible(false);
 			panelConfigDirection = new PanelConfigDirection(this, c);
+			panelConfigDirection.setPreferredSize(new Dimension (250,500));
 			this.add(panelConfigDirection, BorderLayout.EAST);
 			panelConfigDirection.setVisible(true);
 			
@@ -255,6 +251,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		case "Gear":
 			panelConfigGear.setVisible(false);
 			panelConfigGear = new PanelConfigGear(this, c);
+
+			panelConfigGear.setPreferredSize(new Dimension (250,500));
 			this.add(panelConfigGear, BorderLayout.EAST);
 			
 			panelConfigGear.setVisible(true);
@@ -267,6 +265,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		case "Pause":
 			panelConfigPause.setVisible(false);
 			panelConfigPause = new PanelConfigPause(this, c);
+			panelConfigPause.setPreferredSize(new Dimension (250,500));
 			this.add(panelConfigPause, BorderLayout.EAST);
 			
 			panelConfigPause.setVisible(true);
@@ -285,6 +284,8 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	public void setDefaultConfig()
 	{
 		this.add( panelConfigDefault, BorderLayout.EAST);   
+
+		panelConfigDefault.setPreferredSize(new Dimension (250,500));
 		panelConfigDefault.setVisible(true);
 		panelConfigGear.setVisible(false);
 		panelConfigDirection.setVisible(false);

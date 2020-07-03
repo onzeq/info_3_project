@@ -18,7 +18,8 @@ public class PanelConfigDefault extends PanelCommandConfig{
 	
 	public void setView() {
 		
-		this.add(lMessage, BorderLayout.CENTER);
+		this.add(lMessage, BorderLayout.NORTH);
+		lMessage.setHorizontalAlignment(JLabel.CENTER);
 	}
 	@Override
 	public void update(Command c) {

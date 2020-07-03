@@ -1,10 +1,12 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.Command;
@@ -30,12 +32,21 @@ public class PanelConfigGear extends PanelCommandConfig{
 	
 	private void setView()
 	{
-		this.add(new JLabel("Gear"));
-		this.add(new JLabel("Speed"));
-		this.add(tSpeed);
-		this.add(new JLabel("Duration"));
-		this.add(tDuration);
-		this.add(bSave);
+		this.setLayout(new BorderLayout());
+		this.add(new JLabel("Gear"), BorderLayout.NORTH);
+		JPanel speedlabel = new JPanel();
+		speedlabel.add(new JLabel("Speed:    "));
+		speedlabel.add(tSpeed);
+		
+		JPanel durationlabel = new JPanel();
+		durationlabel.add(new JLabel("Duration:"));
+		durationlabel.add(tDuration);
+		
+		JPanel panel = new JPanel();
+		panel.add(speedlabel);
+		panel.add(durationlabel);
+		this.add(panel, BorderLayout.CENTER);
+		this.add(bSave, BorderLayout.SOUTH);
 	}
 	
 	private void setController()

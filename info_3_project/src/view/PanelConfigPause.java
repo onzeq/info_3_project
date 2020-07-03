@@ -1,10 +1,13 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.Command;
@@ -31,10 +34,15 @@ public class PanelConfigPause extends PanelCommandConfig {
 	
 	private void setView()
 	{
-		this.add(new JLabel("Pause"));
-		this.add(new JLabel("Duration"));
-		this.add(tDuration);
-		this.add(bSave);
+		this.setLayout(new BorderLayout());
+		this.add(new JLabel("Pause"), BorderLayout.NORTH);
+		
+		JPanel durationlabel = new JPanel();
+		durationlabel.add(new JLabel("Duration:"));
+		durationlabel.add(tDuration);
+		
+		this.add(durationlabel, BorderLayout.CENTER);
+		this.add(bSave, BorderLayout.SOUTH);
 	}
 	
 	private void setController()

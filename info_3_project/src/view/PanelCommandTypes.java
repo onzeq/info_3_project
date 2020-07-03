@@ -1,17 +1,22 @@
 package view;
 import javax.swing.JList;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-
+import javax.swing.JLabel;
 
 import model.CommandType;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -28,7 +33,9 @@ public class PanelCommandTypes extends JPanel {
 		this.controlModel = cM;
 		controlUI = cui;
 		commandTypeList.setListData(cM.getCommandTypes());
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		
+		
 	
 		this.setView();
 		this.setController();
@@ -36,8 +43,12 @@ public class PanelCommandTypes extends JPanel {
 	}
 	private void setView() {
 		//adds graphical components to the panel itself
-		this.add(commandTypeList);
-		this.add(bAdd);
+		this.setLayout(new BorderLayout());
+		JScrollPane scrollPane = new JScrollPane(commandTypeList);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		this.add(scrollPane, BorderLayout.CENTER);
+		this.add(bAdd, BorderLayout.SOUTH);
+		this.add(new JLabel("Types"), BorderLayout.NORTH);
 	}
 	
 	private void setController() {

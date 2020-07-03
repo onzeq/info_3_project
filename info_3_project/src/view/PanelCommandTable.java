@@ -1,10 +1,12 @@
 package view;
 
 import java.awt.BorderLayout;
-
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -53,14 +55,22 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	private void setView()
 	{
 		this.setLayout(new BorderLayout());
-		JPanel usePanel = new JPanel();
 		this.add(new JScrollPane(tCommands), BorderLayout.CENTER);
+		
+		JPanel usePanel = new JPanel();
+		usePanel.setLayout(new BoxLayout(usePanel, BoxLayout.X_AXIS));
 		usePanel.add(bRemove);
+		usePanel.add(Box.createRigidArea(new Dimension(5,0)));
 		usePanel.add(bUp);
+		usePanel.add(Box.createRigidArea(new Dimension(5,0)));
 		usePanel.add(bDown);
-		usePanel.add(JRover);
+		usePanel.add(Box.createRigidArea(new Dimension(35,0)));
 		usePanel.add(bStart);
+		usePanel.add(Box.createRigidArea(new Dimension(5,0)));
 		usePanel.add(bStop);
+		usePanel.add(Box.createRigidArea(new Dimension(20,0)));
+		usePanel.add(JRover);
+		
 		this.add(usePanel, BorderLayout.SOUTH);	
 	}
 	
