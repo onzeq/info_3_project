@@ -1,37 +1,44 @@
 package view;
-import javax.swing.JList;
 
+//Importieren der benötigten Bibliotheken
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
-import javax.swing.BoxLayout;
+import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
-import model.CommandType;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JViewport;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import model.CommandType;
 import model.ControlModel;
+
+/**
+ * 
+ * Klasse zum Darstellen des Types Panel mit gesamter Funktionalität 
+ *
+ */
 @SuppressWarnings("serial")
 public class PanelCommandTypes extends JPanel {
+	//JList Objekt zum Darstellen der CommandTypes
 	private JList<CommandType> commandTypeList = new JList<CommandType>();
-	private JButton bAdd = new JButton("Add");
-	ControlModel controlModel;
-	private CommandType selectedCommandType = null;
-	private ControlUI controlUI = null;
 	
+	ControlModel controlModel;
+	private JButton bAdd 					= null;
+	private CommandType selectedCommandType = null;
+	private ControlUI controlUI 			= null;
+	
+	/**
+	 * 
+	 * 
+	 */
 	public PanelCommandTypes(ControlModel cM, ControlUI cui) {
 		this.controlModel = cM;
+		bAdd = new JButton("Add");
 		controlUI = cui;
 		commandTypeList.setListData(cM.getCommandTypes());
 		

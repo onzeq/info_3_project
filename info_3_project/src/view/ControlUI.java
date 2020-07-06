@@ -1,5 +1,6 @@
 package view;
 
+//Hinzufügen der benötigten Bibliotheken
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,11 +11,9 @@ import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -34,29 +33,23 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private JTextArea messageArea = new JTextArea();
 	
 	//MenuBar attribute with several items in it
-	private JMenuBar menuBar = new JMenuBar();
-	private JMenu mFile = new JMenu("File");
-	private JMenuItem mIOpen = new JMenuItem("Open");
-	private JMenuItem mISave = new JMenuItem("Save");
-	private JMenuItem mIRover = new JMenuItem("Rover");
-	private JMenuItem mIExit = new JMenuItem("Exit");
-	private JMenu mHelp = new JMenu("Help");;
-	private JMenuItem mIAbout = new JMenuItem("About");
-	private AboutDialog dAbout = new AboutDialog(this);
+	private JMenuBar menuBar 	= new JMenuBar();
+	private JMenu mFile 		= new JMenu("File");
+	private JMenuItem mIOpen 	= new JMenuItem("Open");
+	private JMenuItem mISave 	= new JMenuItem("Save");
+	private JMenuItem mIRover 	= new JMenuItem("Rover");
+	private JMenuItem mIExit 	= new JMenuItem("Exit");
+	private JMenu mHelp 		= new JMenu("Help");;
+	private JMenuItem mIAbout 	= new JMenuItem("About");
+	private AboutDialog dAbout 	= new AboutDialog(this);
 	
-	//constants to choose right commandConfigPanel
-	public static final int CONFIGDEFAULT 	= 0;
-	public static final int CONFIGDIRECTION = 1;
-	public static final int CONFIGGEAR 		= 2;
-	public static final int CONFIGPAUSE 	= 3;
-	
-	//all the panels in the UI
-	private PanelCommandTypes panelCommandTypes = null;
-	private PanelCommandTable panelCommandTable = null;
-	private PanelConfigDefault panelConfigDefault= null;
-	private PanelConfigDirection panelConfigDirection= null;
-	private PanelConfigGear panelConfigGear= null;
-	private PanelConfigPause panelConfigPause= null;
+	//deklarieren der benötigten Panels
+	private PanelCommandTypes panelCommandTypes 		= null;
+	private PanelCommandTable panelCommandTable 		= null;
+	private PanelConfigDefault panelConfigDefault		= null;
+	private PanelConfigDirection panelConfigDirection	= null;
+	private PanelConfigGear panelConfigGear				= null;
+	private PanelConfigPause panelConfigPause			= null;
 	
 	//file that is worked on
 	private File workFile = null;
@@ -69,16 +62,13 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 */
 	public ControlUI() {
 		//Initialisieren der verschiedenen Panels
-		panelCommandTypes = new PanelCommandTypes(cM, this);
-		panelCommandTable = new PanelCommandTable(cM, this);
-		panelConfigDefault = new PanelConfigDefault();
-		panelConfigDirection = new PanelConfigDirection(this, null);
-		panelConfigGear = new PanelConfigGear(this, null);
-		panelConfigPause = new  PanelConfigPause(this,null);
-		panelConfigDirection.setVisible(false);
-		panelConfigGear.setVisible(false);
-		panelConfigPause.setVisible(false);
-
+		panelCommandTypes 		= new PanelCommandTypes(cM, this);
+		panelCommandTable 		= new PanelCommandTable(cM, this);
+		panelConfigDefault 		= new PanelConfigDefault();
+		panelConfigDirection 	= new PanelConfigDirection(this, null);
+		panelConfigGear 		= new PanelConfigGear(this, null);
+		panelConfigPause 		= new  PanelConfigPause(this,null);
+		
 		this.setView();
 		this.setController();
 	}
@@ -94,15 +84,14 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	{
 		this.setTitle("Informatik 3 Praktikum - Christian und Jakob");
 		
-		BorderLayout layout = new BorderLayout(5,5);
+		BorderLayout layout = new BorderLayout(5,5);// 5 Pixel  Abstand(gap)
 		this.setLayout(layout);
-		
 		this.setMinimumSize(new Dimension(1100,500));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		this.add(panelCommandTable, BorderLayout.CENTER);
-		panelCommandTypes.setPreferredSize(new Dimension(150,500));
+		panelCommandTypes.setPreferredSize(new Dimension(150,500)); // Boarderlayout will prefferedSize()
 		this.add( panelCommandTypes, BorderLayout.WEST );    
 	    this.add( messageArea, BorderLayout.SOUTH );  
 		this.setDefaultConfig();
@@ -118,7 +107,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	}
 	
 	/**
-	 * integrates all compnents of the menubar in the window
+	 * integrates all components of the menubar in the window
 	 */
 	private void setMenubar()
 	{
@@ -131,23 +120,31 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		menuBar.add(mHelp);
 	}
 	
-	
+	/**
+	 * Fügt Button Funktionalität hinzu
+	 */
 	private void setController()
 	{
+		//open Button
 		mIOpen.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				
 				setDefaultConfig();
+				//fileChooser öffnet popUp Wnindow zum Auswählen des Files(API)
 				JFileChooser fileChooser = new JFileChooser();
 				
+				//akzeptiert nur .txt Files
 				FileNameExtensionFilter filter = new FileNameExtensionFilter(
 				        ".txt Documents only", "txt");
 				fileChooser.setFileFilter(filter);
 				fileChooser.setDialogTitle("Explorer");
 				JDialog dFileChooser = new JDialog();
+				//Liefert Ergebnis der "Öffnen" - Operation zurück
 				int result = fileChooser.showOpenDialog(dFileChooser);
 				dFileChooser.setVisible(true);
 				
+				//Wenn erfolgreich geöffnet wird Liste befüllt
 				if (result == JFileChooser.APPROVE_OPTION) {
 					workFile = fileChooser.getSelectedFile();
 					cM.readCommands(workFile);
@@ -156,11 +153,13 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 					{
 						messageUpdated("List from "+ workFile.getPath()+ " is empty!");
 					}
+					//Wenn nicht erfolgreich Fehlermeldung in Messagearea
 					else
 					{
 						messageUpdated("Opened List from "+ workFile.getPath());
 					}
 					
+					//wenn fenster ohne Auswahl geschlossen wird
 				} else if (result == JFileChooser.CANCEL_OPTION) {
 					messageUpdated("Cancel Selection");
 				    dFileChooser.dispose();
@@ -168,9 +167,12 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 				panelCommandTable.updateTable(null);
 			}
 		});
+		
+		//Save Button
 		mISave.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				//fileChooser öffnet popUp Window Pfad wählen wo gespeichtert werden soll(API)
 				setDefaultConfig();
 				JFileChooser fileChooser = new JFileChooser();
 				FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -178,15 +180,19 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 				fileChooser.setFileFilter(filter);
 				fileChooser.setDialogTitle("Explorer");
 				JDialog dFileChooser = new JDialog();
+				
+				//Liefert Ergebnis ob Pfad in Ordnung 
 				int result = fileChooser.showOpenDialog(dFileChooser);
 				dFileChooser.setVisible(true);
 				
+				//wenn Pfad in Ordnung, schreiben der Liste in Txt datei und speichern in gewähltem Pfad
 				if (result == JFileChooser.APPROVE_OPTION) {
 					workFile = fileChooser.getSelectedFile();
 					cM.writeCommands(workFile);
 					dFileChooser.dispose();
 					messageUpdated("Saved List in "+ workFile.getPath());
 					
+					//Wenn nicht erfolgreich, Fehler in Messagearea ausgeben
 				} else if (result == JFileChooser.CANCEL_OPTION) {
 					messageUpdated("Cancel Selection");
 				    dFileChooser.dispose();
@@ -194,23 +200,29 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 				
 			}
 		});
+		//Rover Button
 		mIRover.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				//selektiert verfügbaren Rover und meldet Ergebnis in MessageArea
 				cM.setSelectedRover();
 				cM.notifyRoverChanged();
 				messageArea.setText("New Rover selected");
 			}
 		});
+		//Exit Button
 		mIExit.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				//Schließt Fenster bei Druck des Buttons
 				dispose();
 			}
 		});
+		//About Button
 		mIAbout.addActionListener( new ActionListener() {
 			public void actionPerformed(ActionEvent anEvent) 
 			{
+				//öffnet Dialogfenster
 				dAbout.setVisible(true);
 			}
 		});
@@ -222,7 +234,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 */
 	public void updateTableView(Command c)
 	{
+		//fügt neuen Command in der Liste hinzu
 		cM.getCommandList().add(c);
+		//refresht die Tabellendarstellung
 		panelCommandTable.updateTable(c);
 	}
 	
@@ -230,10 +244,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	 * updates the command Config view for the selected command
 	 * @param c command needed to select right panel
 	 */
-	
 	public void updateConfigView(Command c)
 	{
-		
+		//wählt passenden Command aus und setzt entsprechende Panels
 		switch (c.getName()) {
 		case "Direction":
 			panelConfigDirection.setVisible(false);
@@ -280,6 +293,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		}
 	}
 	
+	/**
+	 * wird aufgerufen wenn keine Zeile in tabelle ausgewählt, Standarddarstellung von panelConfig wird dargestellt
+	 */
 	public void setDefaultConfig()
 	{
 		this.add( panelConfigDefault, BorderLayout.EAST);   
@@ -309,7 +325,9 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		
 	}
 	
+	//Hauptprogramm
 	public static void main(String[] argv) {
+		//GUI wird erzeugt, mit zugrunde liegender Logik des Models
 		new ControlUI();
 	}
 	
