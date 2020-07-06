@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -29,7 +30,12 @@ public class PanelConfigDirection extends PanelCommandConfig{
 	private void setView()
 	{
 		this.setLayout(new BorderLayout());	
-		this.add(new JLabel("Direction"), BorderLayout.NORTH);
+		JLabel lDirection = new JLabel("Direction");
+		lDirection.setOpaque(true);
+		lDirection.setBackground(Color.GRAY);
+		lDirection.setForeground(Color.WHITE);
+		this.add(lDirection, BorderLayout.NORTH);
+		
 		
 		JPanel degreePanel = new JPanel();
 		degreePanel.add(new JLabel("Degree:"));

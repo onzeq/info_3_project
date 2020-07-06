@@ -2,6 +2,7 @@ package view;
 import javax.swing.JList;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.LayoutManager;
@@ -48,7 +49,11 @@ public class PanelCommandTypes extends JPanel {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.add(scrollPane, BorderLayout.CENTER);
 		this.add(bAdd, BorderLayout.SOUTH);
-		this.add(new JLabel("Types"), BorderLayout.NORTH);
+		JLabel lTypes = new JLabel("Types");
+		lTypes.setOpaque(true);
+		lTypes.setBackground(Color.GRAY);
+		lTypes.setForeground(Color.WHITE);
+		this.add(lTypes, BorderLayout.NORTH);
 	}
 	
 	private void setController() {

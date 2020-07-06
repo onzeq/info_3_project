@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +36,11 @@ public class PanelConfigPause extends PanelCommandConfig {
 	private void setView()
 	{
 		this.setLayout(new BorderLayout());
-		this.add(new JLabel("Pause"), BorderLayout.NORTH);
+		JLabel lPause = new JLabel("Pause");
+		lPause.setOpaque(true);
+		lPause.setBackground(Color.GRAY);
+		lPause.setForeground(Color.WHITE);
+		this.add(lPause, BorderLayout.NORTH);
 		
 		JPanel durationlabel = new JPanel();
 		durationlabel.add(new JLabel("Duration:"));

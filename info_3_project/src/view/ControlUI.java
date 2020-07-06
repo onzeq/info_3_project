@@ -42,8 +42,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 	private JMenuItem mIExit = new JMenuItem("Exit");
 	private JMenu mHelp = new JMenu("Help");;
 	private JMenuItem mIAbout = new JMenuItem("About");
-	private JLabel lAbout = new JLabel("Das ist der About-Bereich von Jakob und Christians Programm!");
-	private JDialog dAbout = new JDialog();
+	private AboutDialog dAbout = new AboutDialog(this);
 	
 	//constants to choose right commandConfigPanel
 	public static final int CONFIGDEFAULT 	= 0;
@@ -109,7 +108,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 		this.setDefaultConfig();
 		
 		dAbout.setVisible(false);
-		dAbout.add(lAbout);
+		
 		
 		setMenubar();
 		super.setJMenuBar(menuBar);

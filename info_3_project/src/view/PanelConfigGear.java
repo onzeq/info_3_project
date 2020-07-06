@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,7 +34,11 @@ public class PanelConfigGear extends PanelCommandConfig{
 	private void setView()
 	{
 		this.setLayout(new BorderLayout());
-		this.add(new JLabel("Gear"), BorderLayout.NORTH);
+		JLabel lGear = new JLabel("Gear");
+		lGear.setOpaque(true);
+		lGear.setBackground(Color.GRAY);
+		lGear.setForeground(Color.WHITE);
+		this.add(lGear, BorderLayout.NORTH);
 		JPanel speedlabel = new JPanel();
 		speedlabel.add(new JLabel("Speed:    "));
 		speedlabel.add(tSpeed);
