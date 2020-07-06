@@ -1,5 +1,5 @@
 package view;
-
+//Importieren der benötigten Bibliotheken
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -11,12 +11,22 @@ import javax.swing.*;
 
 import model.*;
 
+/**
+ * Klasse die das Panel bei Klick auf ein Direction Objekt in der Tabelle aufruft
+ * @author jakob
+ *
+ */
 @SuppressWarnings("serial")
 public class PanelConfigDirection extends PanelCommandConfig{
-	private JTextField tDegree = new JTextField(10);
-	private JButton bSave = new JButton("Save");
+	private JTextField tDegree 		= new JTextField(10);
+	private JButton bSave 			= new JButton("Save");
 	private ControlUI controlUI;
 	
+	/**
+	 * Konstruktor der die Ansicht und die Funktionalität ausführt
+	 * @param cui
+	 * @param d
+	 */
 	public PanelConfigDirection(ControlUI cui, Command d)
 	{
 		command = d;
