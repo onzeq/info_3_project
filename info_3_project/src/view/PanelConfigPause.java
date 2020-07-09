@@ -76,6 +76,7 @@ public class PanelConfigPause extends PanelCommandConfig {
 				//Aktualiseren und message updaten
 				controlUI.getTable().updateTable(command);
 				controlUI.messageUpdated("Saved successful!");
+				controlUI.setDefaultConfig();
 			}
 		});
 	}

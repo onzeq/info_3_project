@@ -62,6 +62,7 @@ public class PanelConfigDirection extends PanelCommandConfig{
 				((Direction) command).setDegree(Integer.parseInt(tDegree.getText()));
 				controlUI.getTable().updateTable(command);
 				controlUI.messageUpdated("Saved successful!");
+				controlUI.setDefaultConfig();
 			}
 				
 				
