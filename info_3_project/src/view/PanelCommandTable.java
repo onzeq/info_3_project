@@ -181,7 +181,15 @@ public class PanelCommandTable extends JPanel implements ListSelectionListener{
 	
 	public void updateSelectedRover()
 	{
-		JRover.setName("Rover: " + controlModel.getSelectedRoverId());
+		
+		if(controlModel.getSelectedRover() != null)
+		{
+			JRover.setText("Rover: " + controlModel.getSelectedRoverId());
+		}
+		else
+		{
+			JRover.setText("Rover: Sim");
+		}
 	}
 
 	

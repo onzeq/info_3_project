@@ -87,6 +87,10 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 		{
 			selectedRover = freeRovers[0];
 		}
+		else
+		{
+			selectedRover = null;
+		}
 	}
 	
 	/**
@@ -94,9 +98,20 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	 */
 	public String getSelectedRoverId()
 	{
+		if(selectedRover == null)
+		{
+			return null;
+		}
+		else
+		{
 		return selectedRover.getRoverID();
+		}
 	}
 	
+	public Rover getSelectedRover()
+	{
+		return selectedRover;
+	}
 	
 	/**
 	 * Method to Read/Write a CommandVectorFile --> implement in next excercise
@@ -154,6 +169,7 @@ public class ControlModel extends ControlModelRegistry implements IComListener{
 	public boolean start()
 	{
 		ComHandler cM = ComHandler.getInstance();
+		cM.register(this);
 		Vector<ICommand> vC = new Vector<ICommand>();
 		int size = cL.getSize();
 		for(int i = 0; i < size; i++)

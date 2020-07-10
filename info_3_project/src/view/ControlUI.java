@@ -207,6 +207,7 @@ public class ControlUI extends JFrame  implements IControlModelListener{
 				//selektiert verfügbaren Rover und meldet Ergebnis in MessageArea
 				cM.setSelectedRover();
 				cM.notifyRoverChanged();
+				panelCommandTable.updateSelectedRover();
 				messageArea.setText("New Rover selected");
 			}
 		});
