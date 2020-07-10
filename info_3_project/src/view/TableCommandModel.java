@@ -48,9 +48,6 @@ public class TableCommandModel extends AbstractTableModel{
 	 * Methode die Object an bestimmer Stelle returned, sodass Tabelle befüllt werden kann
 	 */
 	public Object getValueAt(int arg0, int arg1) {
-		//Fall 1 Command gehört zu direction
-		if(commandList.getCommand(arg0).getName()=="Direction")
-		{
 			switch (arg1) {
 			case 0:
 				return arg0 +1; //nummer
@@ -61,35 +58,6 @@ public class TableCommandModel extends AbstractTableModel{
 			default:
 				return "Fehler"; //kein gültiges arg1 übergeben
 			}
-		}
-		//Fall 2 Command gehört zu gear
-		else if(commandList.getCommand(arg0).getName()=="Gear")
-		{
-			switch (arg1) {
-			case 0:
-				return arg0 +1;
-			case 1:
-				return commandList.getCommand(arg0).getName();
-			case 2:
-				return commandList.getCommand(arg0).getConfig();	
-			default:
-				return "Fehler";
-			}
-		}
-		//Fall 3 Command gehört zu pause
-		else
-		{
-			switch (arg1) {
-			case 0:
-				return arg0 +1;
-			case 1:
-				return commandList.getCommand(arg0).getName();
-			case 2:
-				return commandList.getCommand(arg0).getConfig();	
-			default:
-				return "Fehler";
-			}
-		}
 	}
 	
 
