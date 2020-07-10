@@ -72,6 +72,7 @@ public class PanelConfigDirection extends PanelCommandConfig{
 				//die table updaten und message verändern
 				controlUI.getTable().updateTable(command);
 				controlUI.messageUpdated("Saved successful!");
+				controlUI.setDefaultConfig();
 			}
 				
 				
